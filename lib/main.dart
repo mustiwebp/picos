@@ -1,10 +1,12 @@
+// ignore_for_file: public_member_api_docs
+
 /*
 Copyright 2022 by Mustafa Sezer <mustafa.sezer@hit-solutions.de>
 
 This file is part of picos.
 
 picos is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
-picos is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+Y; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.picos is distributed in the hope that it will be useful, but WITHOUT ANY WARRANT
 You should have received a copy of the GNU General Public License along with picos. If not, see <https://www.gnu.org/licenses/>.
 */
 
@@ -18,10 +20,10 @@ class Picos extends StatefulWidget {
   const Picos({Key? key}) : super(key: key);
 
   @override
-  State<Picos> createState() => _PicosState();
+  State<Picos> createState() => PicosState();
 }
 
-class _PicosState extends State<Picos> {
+class PicosState extends State<Picos> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -45,7 +47,7 @@ class _PicosState extends State<Picos> {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+  const MyHomePage({required this.title, Key? key}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -59,10 +61,10 @@ class MyHomePage extends StatefulWidget {
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<MyHomePage> createState() => MainAppClass();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class MainAppClass extends State<MyHomePage> {
   static const List<Widget> pages = <Widget>[
     Icon(
       Icons.house,
@@ -103,20 +105,7 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Colors.white,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Image.asset(
-              'assets/graphics/logo/appbar-logo.jpg',
-              fit: BoxFit.contain,
-              height: 32,
-            ),
-            Container(
-              padding: const EdgeInsets.all(8.0),
-              child: const Text('PICOS',
-                  style: TextStyle(
-                    color: Colors.grey,
-                  )),
-            )
-          ],
+          children: appBarElements,
         ),
         centerTitle: false,
       ),
@@ -157,4 +146,20 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
+
+  // ignore: always_specify_types
+  List<Widget> get appBarElements => [
+        Image.asset(
+          'assets/graphics/logo/appbar-logo.jpg',
+          fit: BoxFit.contain,
+          height: 32,
+        ),
+        Container(
+          padding: const EdgeInsets.all(8.0),
+          child: const Text('PICOS',
+              style: TextStyle(
+                color: Colors.grey,
+              )),
+        )
+      ];
 }
