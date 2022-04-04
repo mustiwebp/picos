@@ -1,17 +1,32 @@
+/*
+Copyright 2022 by Mustafa Sezer <mustafa.sezer@hit-solutions.de>
+
+This file is part of picos.
+
+picos is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+picos is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+You should have received a copy of the GNU General Public License along with picos. If not, see <https://www.gnu.org/licenses/>.
+*/
+
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const Picos());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class Picos extends StatefulWidget {
+  const Picos({Key? key}) : super(key: key);
 
+  @override
+  State<Picos> createState() => _PicosState();
+}
+
+class _PicosState extends State<Picos> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'PICOS',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -24,7 +39,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'PICOS'),
     );
   }
 }
@@ -48,16 +63,30 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  static const List<Widget> pages = <Widget>[
+    Icon(
+      Icons.house,
+      size: 150,
+    ),
+    Icon(
+      Icons.mail,
+      size: 150,
+    ),
+    Icon(
+      Icons.calendar_month,
+      size: 150,
+    ),
+    Icon(
+      Icons.bubble_chart,
+      size: 150,
+    )
+  ];
 
-  void _incrementCounter() {
+  int selectedIndex = 0;
+
+  void onItemTapped(int index) {
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
+      selectedIndex = index;
     });
   }
 
@@ -92,40 +121,40 @@ class _MyHomePageState extends State<MyHomePage> {
         centerTitle: false,
       ),
       body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
+        child: pages.elementAt(selectedIndex),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      backgroundColor: Colors.grey,
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.house_outlined,
+                color: Colors.black,
+              ),
+              label: 'Übersicht'),
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.mail_outline,
+                color: Colors.black,
+              ),
+              label: 'Postfach'),
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.calendar_month_outlined,
+                color: Colors.black,
+              ),
+              label: 'Kalender'),
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.chat_bubble_outline,
+                color: Colors.black,
+              ),
+              label: 'MyPICOS'),
+        ],
+        type: BottomNavigationBarType.fixed,
+        currentIndex: selectedIndex,
+        onTap: onItemTapped,
+      ),
     );
   }
 }
