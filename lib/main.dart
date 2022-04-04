@@ -71,9 +71,25 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        backgroundColor: Colors.white,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Image.asset(
+              'assets/graphics/logo/appbar-logo.jpg',
+              fit: BoxFit.contain,
+              height: 32,
+            ),
+            Container(
+              padding: const EdgeInsets.all(8.0),
+              child: const Text('PICOS',
+                  style: TextStyle(
+                    color: Colors.grey,
+                  )),
+            )
+          ],
+        ),
+        centerTitle: false,
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
