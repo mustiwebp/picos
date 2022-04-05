@@ -22,17 +22,17 @@ with picos. If not, see <https://www.gnu.org/licenses/>.
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const Picos());
+  runApp(const MainAppScreen());
 }
 
-class Picos extends StatefulWidget {
-  const Picos({Key? key}) : super(key: key);
+class MainAppScreen extends StatefulWidget {
+  const MainAppScreen({Key? key}) : super(key: key);
 
   @override
-  State<Picos> createState() => PicosState();
+  State<MainAppScreen> createState() => MainAppScreenState();
 }
 
-class PicosState extends State<Picos> {
+class MainAppScreenState extends State<MainAppScreen> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
