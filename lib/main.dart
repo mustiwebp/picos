@@ -22,10 +22,12 @@ with picos. If not, see <https://www.gnu.org/licenses/>.
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+/// This is the main entry point of the application.
 void main() {
   runApp(const MainAppScreen());
 }
 
+/// The main application screen as a stateful widget will be created here.
 class MainAppScreen extends StatefulWidget {
   const MainAppScreen({Key? key}) : super(key: key);
 
@@ -33,8 +35,8 @@ class MainAppScreen extends StatefulWidget {
   State<MainAppScreen> createState() => MainAppScreenState();
 }
 
+/// This class builds the application with its certain properties.
 class MainAppScreenState extends State<MainAppScreen> {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -42,15 +44,6 @@ class MainAppScreenState extends State<MainAppScreen> {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
         primarySwatch: Colors.blue,
       ),
       home: const MyHomePage(title: 'PICOS'),
@@ -58,17 +51,16 @@ class MainAppScreenState extends State<MainAppScreen> {
   }
 }
 
+/// This widget is the home page of your application. It is stateful, meaning
+/// that it has a State object (defined below) that contains fields that affect
+/// how it looks.
+
+/// This class is the configuration for the state. It holds the values (in this
+/// case the title) provided by the parent (in this case the App widget) and
+/// used by the build method of the State. Fields in a Widget subclass are
+/// always marked "final".
 class MyHomePage extends StatefulWidget {
   const MyHomePage({required this.title, Key? key}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
 
   final String title;
 
@@ -76,7 +68,10 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => MainAppClass();
 }
 
+/// This class contains all relevant Widgets for the UI.
+/// The needed variables and functions/methods are also implemented here.
 class MainAppClass extends State<MyHomePage> {
+  /// This is a list of Widgets to build the pages.
   static const List<Widget> pages = <Widget>[
     Icon(
       Icons.house,
@@ -96,14 +91,18 @@ class MainAppClass extends State<MyHomePage> {
     )
   ];
 
+  // Variable to store the value of the currently clicked navbar-item.
   int selectedIndex = 0;
 
+  /// Assignment of index to selectedIndex
+  /// in order to show the corresponding page.
   void onItemTapped(int index) {
     setState(() {
       selectedIndex = index;
     });
   }
 
+  /// returns the Scaffold containing all UI-widgets.
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -154,6 +153,7 @@ class MainAppClass extends State<MyHomePage> {
     );
   }
 
+//
   // ignore: always_specify_types
   List<Widget> get appBarElements => [
         Container(
