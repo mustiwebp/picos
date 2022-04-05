@@ -20,6 +20,7 @@ with picos. If not, see <https://www.gnu.org/licenses/>.
 */
 
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() {
   runApp(const MainAppScreen());
@@ -38,6 +39,8 @@ class MainAppScreenState extends State<MainAppScreen> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'PICOS',
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -117,31 +120,32 @@ class MainAppClass extends State<MyHomePage> {
       ),
       backgroundColor: Colors.grey,
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-              icon: Icon(
-                Icons.house_outlined,
-                color: Colors.black,
-              ),
-              label: 'Übersicht'),
+            icon: const Icon(
+              Icons.house_outlined,
+              color: Colors.black,
+            ),
+            label: Text(AppLocalizations.of(context)!.overview).data,
+          ),
           BottomNavigationBarItem(
-              icon: Icon(
+              icon: const Icon(
                 Icons.mail_outline,
                 color: Colors.black,
               ),
-              label: 'Postfach'),
+              label: Text(AppLocalizations.of(context)!.inbox).data),
           BottomNavigationBarItem(
-              icon: Icon(
+              icon: const Icon(
                 Icons.calendar_month_outlined,
                 color: Colors.black,
               ),
-              label: 'Kalender'),
+              label: Text(AppLocalizations.of(context)!.calender).data),
           BottomNavigationBarItem(
-              icon: Icon(
+              icon: const Icon(
                 Icons.chat_bubble_outline,
                 color: Colors.black,
               ),
-              label: 'MyPICOS'),
+              label: Text(AppLocalizations.of(context)!.myPicos).data),
         ],
         type: BottomNavigationBarType.fixed,
         currentIndex: selectedIndex,
