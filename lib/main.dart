@@ -103,17 +103,11 @@ class MainAppClass extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.end,
           children: appBarElements,
         ),
         centerTitle: false,
@@ -158,17 +152,14 @@ class MainAppClass extends State<MyHomePage> {
 
   // ignore: always_specify_types
   List<Widget> get appBarElements => [
-        Image.asset(
-          'assets/graphics/logo/appbar-logo.jpg',
-          fit: BoxFit.contain,
-          height: 32,
-        ),
         Container(
           padding: const EdgeInsets.all(8.0),
-          child: const Text('PICOS',
-              style: TextStyle(
-                color: Colors.grey,
-              )),
+          child: const Text(
+            'DE | EN',
+            style: TextStyle(
+              color: Colors.grey,
+            ),
+          ),
         )
       ];
 }
