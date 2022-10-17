@@ -17,20 +17,18 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:picos/widgets/picos_body.dart';
 
-/// contains patient's walk distance.
-bool walkDistanceEnabled = false;
-
-/// contains patient's sleep duration.
-bool sleepDurationEnabled = false;
-
-/// contains patient's sleep quality.
-bool sleepQualityEnabled = false;
-
-/// shows page for configuration of "Activity & Rest"-information.
+/// Shows page for configuration of "Activity & Rest"-information.
 class ConfigurationActivityAndRest extends StatefulWidget {
   /// Constructor of page for configuration of "Activity & Rest"-information.
-  const ConfigurationActivityAndRest({Key? key}) : super(key: key);
+  const ConfigurationActivityAndRest({
+    required this.callbackActivityAndRest,
+    Key? key,
+  }) : super(key: key);
+
+  /// Callback function for activity and rest.
+  final void Function(String, bool) callbackActivityAndRest;
 
   @override
   State<ConfigurationActivityAndRest> createState() =>
@@ -39,80 +37,103 @@ class ConfigurationActivityAndRest extends StatefulWidget {
 
 class _ConfigurationActivityAndRestState
     extends State<ConfigurationActivityAndRest> {
+  /// Local variable for walk distance.
+  bool _entryWalkDistanceEnabled = false;
+
+  /// Local variable for sleep duration.
+  bool _entrySleepDurationEnabled = false;
+
+  /// Local variable for sleep quality.
+  bool _entrySleepQualityEnabled = false;
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(10),
-      child: Form(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: Text(
-                '''${AppLocalizations.of(context)!.infoText1} '''
-                '''"${AppLocalizations.of(context)!.activityAndRest}" '''
-                '''${AppLocalizations.of(context)!.infoText2}''',
-                style: const TextStyle(
-                  fontSize: 18,
+    return PicosBody(
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Form(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(20),
+                child: Text(
+                  '''${AppLocalizations.of(context)!.infoText1} '''
+                  '''"${AppLocalizations.of(context)!.activityAndRest}" '''
+                  '''${AppLocalizations.of(context)!.infoText2}''',
+                  style: const TextStyle(
+                    fontSize: 18,
+                  ),
                 ),
               ),
-            ),
-            SwitchListTile(
-              value: walkDistanceEnabled,
-              onChanged: (bool value) {
-                setState(() {
-                  walkDistanceEnabled = value;
-                });
-              },
-              secondary: const Icon(Icons.directions_walk_outlined),
-              title: Text(
-                AppLocalizations.of(context)!.walkDistance,
-                style: const TextStyle(
-                  fontSize: 16,
+              SwitchListTile(
+                value: _entryWalkDistanceEnabled,
+                onChanged: (bool value) {
+                  setState(() {
+                    widget.callbackActivityAndRest(
+                      'entryWalkDistanceEnabled',
+                      value,
+                    );
+                    _entryWalkDistanceEnabled = value;
+                  });
+                },
+                secondary: const Icon(Icons.directions_walk_outlined),
+                title: Text(
+                  AppLocalizations.of(context)!.walkDistance,
+                  style: const TextStyle(
+                    fontSize: 16,
+                  ),
+                ),
+                shape: const Border(
+                  bottom: BorderSide(color: Colors.grey),
                 ),
               ),
-              shape: const Border(
-                bottom: BorderSide(color: Colors.grey),
-              ),
-            ),
-            SwitchListTile(
-              value: sleepDurationEnabled,
-              onChanged: (bool value) {
-                setState(() {
-                  sleepDurationEnabled = value;
-                });
-              },
-              secondary: const Icon(Icons.access_alarm_outlined),
-              title: Text(
-                AppLocalizations.of(context)!.sleepDuration,
-                style: const TextStyle(
-                  fontSize: 16,
+              SwitchListTile(
+                value: _entrySleepDurationEnabled,
+                onChanged: (bool value) {
+                  setState(() {
+                    widget.callbackActivityAndRest(
+                      'entrySleepDurationEnabled',
+                      value,
+                    );
+                    _entrySleepDurationEnabled = value;
+                  });
+                },
+                secondary: const Icon(Icons.access_alarm_outlined),
+                title: Text(
+                  AppLocalizations.of(context)!.sleepDuration,
+                  style: const TextStyle(
+                    fontSize: 16,
+                  ),
+                ),
+                shape: const Border(
+                  bottom: BorderSide(color: Colors.grey),
                 ),
               ),
-              shape: const Border(
-                bottom: BorderSide(color: Colors.grey),
-              ),
-            ),
-            SwitchListTile(
-              value: sleepQualityEnabled,
-              onChanged: (bool value) {
-                setState(() {
-                  sleepQualityEnabled = value;
-                });
-              },
-              secondary: const Icon(Icons.bed_outlined),
-              title: Text(
-                AppLocalizations.of(context)!.sleepQuality,
-                style: const TextStyle(
-                  fontSize: 16,
+              SwitchListTile(
+                value: _entrySleepQualityEnabled,
+                onChanged: (bool value) {
+                  setState(() {
+                    widget.callbackActivityAndRest(
+                      'entrySleepQualityEnabled',
+                      value,
+                    );
+                    _entrySleepQualityEnabled = value;
+                  });
+                },
+                secondary: const Icon(Icons.bed_outlined),
+                title: Text(
+                  AppLocalizations.of(context)!.sleepQuality,
+                  style: const TextStyle(
+                    fontSize: 16,
+                  ),
+                ),
+                shape: const Border(
+                  bottom: BorderSide(color: Colors.grey),
                 ),
               ),
-              shape: const Border(
-                bottom: BorderSide(color: Colors.grey),
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

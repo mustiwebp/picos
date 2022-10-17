@@ -17,34 +17,41 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:picos/models/patient.dart';
+import 'package:picos/widgets/picos_body.dart';
 import 'package:queen_validators/queen_validators.dart';
 
-/// contains the gender of the corresponding physician
-enum Gender {
-  /// element for denoting the title of men
-  male,
-  /// element for denoting the title of women
-  female,
-}
-
-/// shows form for patient registration.
+/// Shows form for patient registration.
 class ConfigurationForm extends StatefulWidget {
   /// Constructor of form for patient registration.
-  const ConfigurationForm({Key? key}) : super(key: key);
+  const ConfigurationForm({required this.callbackForm, Key? key})
+      : super(key: key);
+
+  /// Callback function for form.
+  final Function(String, String) callbackForm;
 
   @override
   State<ConfigurationForm> createState() => _ConfigurationFormState();
 }
 
 class _ConfigurationFormState extends State<ConfigurationForm> {
+  /// Local variable for form of address.
+  FormOfAddress _entryFormOfAddress = FormOfAddress.female;
+
+  @override
+  void initState() {
+    setState(() {
+      widget.callbackForm('entryFormOfAddress', _entryFormOfAddress.toString());
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    Gender? gender = Gender.male;
-
-    return Padding(
-      padding: const EdgeInsets.all(10),
-      child:
-        Column(
+    return PicosBody(
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Row(
@@ -58,41 +65,45 @@ class _ConfigurationFormState extends State<ConfigurationForm> {
                   ),
                 ),
                 Expanded(
-                  child: RadioListTile<Gender>(
+                  child: RadioListTile<FormOfAddress>(
                     title: Text(
                       AppLocalizations.of(context)!.mr,
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    value: Gender.male,
-                    groupValue: gender,
-                    onChanged: (Gender? value) {
-                      setState(
-                        () {
-                          gender = value;
-                        },
-                      );
+                    value: FormOfAddress.male,
+                    groupValue: _entryFormOfAddress,
+                    onChanged: (FormOfAddress? value) {
+                      setState(() {
+                        widget.callbackForm(
+                          'entryFormOfAddress',
+                          FormOfAddress.male.toString(),
+                        );
+                        _entryFormOfAddress = value!;
+                      });
                     },
                     selected: false,
                   ),
                 ),
                 Expanded(
-                  child: RadioListTile<Gender>(
+                  child: RadioListTile<FormOfAddress>(
                     title: Text(
                       AppLocalizations.of(context)!.mrs,
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    value: Gender.female,
-                    groupValue: gender,
-                    onChanged: (Gender? value) {
-                      setState(
-                        () {
-                          gender = value;
-                        },
-                      );
+                    value: FormOfAddress.female,
+                    groupValue: _entryFormOfAddress,
+                    onChanged: (FormOfAddress? value) {
+                      setState(() {
+                        widget.callbackForm(
+                          'entryFormOfAddress',
+                          FormOfAddress.female.toString(),
+                        );
+                        _entryFormOfAddress = value!;
+                      });
                     },
                     selected: false,
                   ),
@@ -110,6 +121,9 @@ class _ConfigurationFormState extends State<ConfigurationForm> {
                   IsRequired(AppLocalizations.of(context)!.entryFirstName),
                 ],
               ),
+              onChanged: (String? newValue) {
+                widget.callbackForm('entryFirstName', newValue!);
+              },
             ),
             TextFormField(
               decoration: InputDecoration(
@@ -122,6 +136,9 @@ class _ConfigurationFormState extends State<ConfigurationForm> {
                   IsRequired(AppLocalizations.of(context)!.entryFamilyName),
                 ],
               ),
+              onChanged: (String? newValue) {
+                widget.callbackForm('entryFamilyName', newValue!);
+              },
             ),
             TextFormField(
               decoration: InputDecoration(
@@ -135,6 +152,9 @@ class _ConfigurationFormState extends State<ConfigurationForm> {
                   IsEmail(AppLocalizations.of(context)!.entryValidEmail),
                 ],
               ),
+              onChanged: (String? newValue) {
+                widget.callbackForm('entryEmail', newValue!);
+              },
             ),
             TextFormField(
               decoration: InputDecoration(
@@ -147,6 +167,9 @@ class _ConfigurationFormState extends State<ConfigurationForm> {
                   IsRequired(AppLocalizations.of(context)!.entryPhoneNumber),
                 ],
               ),
+              onChanged: (String? newValue) {
+                widget.callbackForm('entryNumber', newValue!);
+              },
             ),
             TextFormField(
               decoration: InputDecoration(
@@ -161,10 +184,13 @@ class _ConfigurationFormState extends State<ConfigurationForm> {
                   IsRequired(AppLocalizations.of(context)!.entryAddress),
                 ],
               ),
+              onChanged: (String? newValue) {
+                widget.callbackForm('entryAddress', newValue!);
+              },
             ),
           ],
         ),
-      
+      ),
     );
   }
 }

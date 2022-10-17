@@ -18,22 +18,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-/// contains patient's weight.
-bool weightBMIEnabled = false;
+import 'package:picos/widgets/picos_body.dart';
 
-/// contains patient's heart frequency.
-bool heartFrequencyEnabled = false;
-
-/// contains patient's blood pressure.
-bool bloodPressureEnabled = false;
-
-/// contains patient's blood sugar level.
-bool bloodSugarLevelsEnabled = false;
-
-/// shows page for configuration of vital values.
+/// Shows page for configuration of vital values.
 class ConfigurationVitalValues extends StatefulWidget {
   /// Constructor of page for configuration of vital values.
-  const ConfigurationVitalValues({Key? key}) : super(key: key);
+  const ConfigurationVitalValues({required this.callbackVitalValues, Key? key})
+      : super(key: key);
+
+  /// Callback function for vital values.
+  final void Function(String, bool) callbackVitalValues;
 
   @override
   State<ConfigurationVitalValues> createState() =>
@@ -41,98 +35,128 @@ class ConfigurationVitalValues extends StatefulWidget {
 }
 
 class _ConfigurationVitalValuesState extends State<ConfigurationVitalValues> {
+  /// Local variable for weight and BMI.
+  bool _entryWeightBMIEnabled = false;
+
+  /// Local variable for heart frequency.
+  bool _entryHeartFrequencyEnabled = false;
+
+  /// Local variable for blood pressure.
+  bool _entryBloodPressureEnabled = false;
+
+  /// Local variable for blood sugar levels.
+  bool _entryBloodSugarLevelsEnabled = false;
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(10),
-      child: Form(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: Text(
-                '''${AppLocalizations.of(context)!.infoText1} '''
-                '''"${AppLocalizations.of(context)!.vitalValues}" '''
-                '''${AppLocalizations.of(context)!.infoText2}''',
-                style: const TextStyle(
-                  fontSize: 18,
+    return PicosBody(
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Form(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(20),
+                child: Text(
+                  '''${AppLocalizations.of(context)!.infoText1} '''
+                  '''"${AppLocalizations.of(context)!.vitalValues}" '''
+                  '''${AppLocalizations.of(context)!.infoText2}''',
+                  style: const TextStyle(
+                    fontSize: 18,
+                  ),
                 ),
               ),
-            ),
-            SwitchListTile(
-              value: weightBMIEnabled,
-              onChanged: (bool value) {
-                setState(() {
-                  weightBMIEnabled = value;
-                });
-              },
-              secondary: const Icon(Icons.monitor_weight_outlined),
-              title: Text(
-                AppLocalizations.of(context)!.weightBMI,
-                style: const TextStyle(
-                  fontSize: 16,
+              SwitchListTile(
+                value: _entryWeightBMIEnabled,
+                onChanged: (bool value) {
+                  setState(() {
+                    widget.callbackVitalValues(
+                      'entryWeightBMIEnabled',
+                      value,
+                    );
+                    _entryWeightBMIEnabled = value;
+                  });
+                },
+                secondary: const Icon(Icons.monitor_weight_outlined),
+                title: Text(
+                  AppLocalizations.of(context)!.weightBMI,
+                  style: const TextStyle(
+                    fontSize: 16,
+                  ),
+                ),
+                shape: const Border(
+                  bottom: BorderSide(color: Colors.grey),
                 ),
               ),
-              shape: const Border(
-                bottom: BorderSide(color: Colors.grey),
-              ),
-            ),
-            SwitchListTile(
-              value: heartFrequencyEnabled,
-              onChanged: (bool value) {
-                setState(() {
-                  heartFrequencyEnabled = value;
-                });
-              },
-              secondary: const Icon(Icons.monitor_heart_outlined),
-              title: Text(
-                AppLocalizations.of(context)!.heartFrequency,
-                style: const TextStyle(
-                  fontSize: 16,
+              SwitchListTile(
+                value: _entryHeartFrequencyEnabled,
+                onChanged: (bool value) {
+                  setState(() {
+                    widget.callbackVitalValues(
+                      'entryHeartFrequencyEnabled',
+                      value,
+                    );
+                    _entryHeartFrequencyEnabled = value;
+                  });
+                },
+                secondary: const Icon(Icons.monitor_heart_outlined),
+                title: Text(
+                  AppLocalizations.of(context)!.heartFrequency,
+                  style: const TextStyle(
+                    fontSize: 16,
+                  ),
+                ),
+                shape: const Border(
+                  bottom: BorderSide(color: Colors.grey),
                 ),
               ),
-              shape: const Border(
-                bottom: BorderSide(color: Colors.grey),
-              ),
-            ),
-            SwitchListTile(
-              value: bloodPressureEnabled,
-              onChanged: (bool value) {
-                setState(() {
-                  bloodPressureEnabled = value;
-                });
-              },
-              secondary: const Icon(Icons.bloodtype_outlined),
-              title: Text(
-                AppLocalizations.of(context)!.bloodPressure,
-                style: const TextStyle(
-                  fontSize: 16,
+              SwitchListTile(
+                value: _entryBloodPressureEnabled,
+                onChanged: (bool value) {
+                  setState(() {
+                    widget.callbackVitalValues(
+                      'entryBloodPressureEnabled',
+                      value,
+                    );
+                    _entryBloodPressureEnabled = value;
+                  });
+                },
+                secondary: const Icon(Icons.bloodtype_outlined),
+                title: Text(
+                  AppLocalizations.of(context)!.bloodPressure,
+                  style: const TextStyle(
+                    fontSize: 16,
+                  ),
+                ),
+                shape: const Border(
+                  bottom: BorderSide(color: Colors.grey),
                 ),
               ),
-              shape: const Border(
-                bottom: BorderSide(color: Colors.grey),
-              ),
-            ),
-            SwitchListTile(
-              value: bloodSugarLevelsEnabled,
-              onChanged: (bool value) {
-                setState(() {
-                  bloodSugarLevelsEnabled = value;
-                });
-              },
-              secondary: const Icon(Icons.device_thermostat_outlined),
-              title: Text(
-                AppLocalizations.of(context)!.bloodSugarLevels,
-                style: const TextStyle(
-                  fontSize: 16,
+              SwitchListTile(
+                value: _entryBloodSugarLevelsEnabled,
+                onChanged: (bool value) {
+                  setState(() {
+                    widget.callbackVitalValues(
+                      'entryBloodSugarLevelsEnabled',
+                      value,
+                    );
+                    _entryBloodSugarLevelsEnabled = value;
+                  });
+                },
+                secondary: const Icon(Icons.device_thermostat_outlined),
+                title: Text(
+                  AppLocalizations.of(context)!.bloodSugarLevels,
+                  style: const TextStyle(
+                    fontSize: 16,
+                  ),
+                ),
+                shape: const Border(
+                  bottom: BorderSide(color: Colors.grey),
                 ),
               ),
-              shape: const Border(
-                bottom: BorderSide(color: Colors.grey),
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

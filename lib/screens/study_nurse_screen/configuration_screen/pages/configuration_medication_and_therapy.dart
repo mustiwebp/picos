@@ -17,21 +17,19 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:picos/widgets/picos_body.dart';
 
-/// contains patient's medication.
-bool medicationEnabled = false;
-
-/// contains patient's therapy.
-bool therapyEnabled = false;
-
-/// contains patient's doctor's visit.
-bool doctorsVisitEnabled = false;
-
-/// shows page for configuration of "Medication & Therapy"-information.
+/// Shows page for configuration of "Medication & Therapy"-information.
 class ConfigurationMedicationAndTherapy extends StatefulWidget {
   /// Constructor of page for configuration of
   /// "Medication & Therapy"-information.
-  const ConfigurationMedicationAndTherapy({Key? key}) : super(key: key);
+  const ConfigurationMedicationAndTherapy({
+    required this.callbackMedicationAndTherapy,
+    Key? key,
+  }) : super(key: key);
+
+  /// Callback function for medication and therapy.
+  final void Function(String, bool) callbackMedicationAndTherapy;
 
   @override
   State<ConfigurationMedicationAndTherapy> createState() =>
@@ -40,80 +38,103 @@ class ConfigurationMedicationAndTherapy extends StatefulWidget {
 
 class _ConfigurationMedicationAndTherapyState
     extends State<ConfigurationMedicationAndTherapy> {
+  /// Local variable for medication.
+  bool _entryMedicationEnabled = false;
+
+  /// Local variable for therapy.
+  bool _entryTherapyEnabled = false;
+
+  /// Local variable for doctor visits.
+  bool _entryDoctorsVisitEnabled = false;
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(10),
-      child: Form(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: Text(
-                '''${AppLocalizations.of(context)!.infoText1} '''
-                '''"${AppLocalizations.of(context)!.medicationAndTherapy}" '''
-                '''${AppLocalizations.of(context)!.infoText2}''',
-                style: const TextStyle(
-                  fontSize: 18,
+    return PicosBody(
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Form(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(20),
+                child: Text(
+                  '''${AppLocalizations.of(context)!.infoText1} '''
+                  '''"${AppLocalizations.of(context)!.medicationAndTherapy}" '''
+                  '''${AppLocalizations.of(context)!.infoText2}''',
+                  style: const TextStyle(
+                    fontSize: 18,
+                  ),
                 ),
               ),
-            ),
-            SwitchListTile(
-              value: medicationEnabled,
-              onChanged: (bool value) {
-                setState(() {
-                  medicationEnabled = value;
-                });
-              },
-              secondary: const Icon(Icons.medication),
-              title: Text(
-                AppLocalizations.of(context)!.medication,
-                style: const TextStyle(
-                  fontSize: 16,
+              SwitchListTile(
+                value: _entryMedicationEnabled,
+                onChanged: (bool value) {
+                  setState(() {
+                    widget.callbackMedicationAndTherapy(
+                      'entryMedicationEnabled',
+                      value,
+                    );
+                    _entryMedicationEnabled = value;
+                  });
+                },
+                secondary: const Icon(Icons.medication),
+                title: Text(
+                  AppLocalizations.of(context)!.medication,
+                  style: const TextStyle(
+                    fontSize: 16,
+                  ),
+                ),
+                shape: const Border(
+                  bottom: BorderSide(color: Colors.grey),
                 ),
               ),
-              shape: const Border(
-                bottom: BorderSide(color: Colors.grey),
-              ),
-            ),
-            SwitchListTile(
-              value: therapyEnabled,
-              onChanged: (bool value) {
-                setState(() {
-                  therapyEnabled = value;
-                });
-              },
-              secondary: const Icon(Icons.healing_outlined),
-              title: Text(
-                AppLocalizations.of(context)!.therapy,
-                style: const TextStyle(
-                  fontSize: 16,
+              SwitchListTile(
+                value: _entryTherapyEnabled,
+                onChanged: (bool value) {
+                  setState(() {
+                    widget.callbackMedicationAndTherapy(
+                      'entryTherapyEnabled',
+                      value,
+                    );
+                    _entryTherapyEnabled = value;
+                  });
+                },
+                secondary: const Icon(Icons.healing_outlined),
+                title: Text(
+                  AppLocalizations.of(context)!.therapy,
+                  style: const TextStyle(
+                    fontSize: 16,
+                  ),
+                ),
+                shape: const Border(
+                  bottom: BorderSide(color: Colors.grey),
                 ),
               ),
-              shape: const Border(
-                bottom: BorderSide(color: Colors.grey),
-              ),
-            ),
-            SwitchListTile(
-              value: doctorsVisitEnabled,
-              onChanged: (bool value) {
-                setState(() {
-                  doctorsVisitEnabled = value;
-                });
-              },
-              secondary: const Icon(Icons.local_hospital_outlined),
-              title: Text(
-                AppLocalizations.of(context)!.doctorsVisit,
-                style: const TextStyle(
-                  fontSize: 16,
+              SwitchListTile(
+                value: _entryDoctorsVisitEnabled,
+                onChanged: (bool value) {
+                  setState(() {
+                    widget.callbackMedicationAndTherapy(
+                      'entryDoctorsVisitEnabled',
+                      value,
+                    );
+                    _entryDoctorsVisitEnabled = value;
+                  });
+                },
+                secondary: const Icon(Icons.local_hospital_outlined),
+                title: Text(
+                  AppLocalizations.of(context)!.doctorsVisit,
+                  style: const TextStyle(
+                    fontSize: 16,
+                  ),
+                ),
+                shape: const Border(
+                  bottom: BorderSide(color: Colors.grey),
                 ),
               ),
-              shape: const Border(
-                bottom: BorderSide(color: Colors.grey),
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
