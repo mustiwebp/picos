@@ -17,6 +17,7 @@
 
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
 import 'package:picos/secrets.dart';
 
@@ -28,9 +29,19 @@ import '../models/abstract_database_object.dart';
 class Backend {
   /// initializes the parse server
   Backend() {
+    String url = '';
+
+    if (kReleaseMode) {
+      url = serverUrlProd;
+    }
+
+    if (kDebugMode) {
+      url = serverUrl;
+    }
+
     Parse().initialize(
       appId,
-      serverUrl,
+      url,
       clientKey: clientKey,
       appName: appName,
       debug: true,
@@ -57,14 +68,14 @@ class Backend {
   static Future<String> getRole() async {
     // these are thr routes we are going to forward the user to
     Map<String, String> routes = <String, String>{
-      'Patient': '/mainscreen',
-      'Doctor': '/studynursescreen'
+      'Patient': '/main-screen/mainscreen',
+      'Doctor': '/study-nurse-screen/studynursescreen'
     };
 
     // TODO: maybe refactor for type safety
     String res = await user.get('Role');
 
-    return routes[res] ?? '/mainscreen';
+    return routes[res] ?? '/main-screen/mainscreen';
   }
 
   /// Retrieves all possible objects from a [table].
