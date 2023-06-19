@@ -121,47 +121,36 @@ class BackendPatientsListApi extends BackendObjectsApi {
 
       for (PatientJoinResult element in joinQueryResults) {
         Patient patient = Patient(
-          firstName: element._patient!.get('Firstname'),
-          familyName: element._patient!.get('Lastname'),
-          email: element._patient!.get('username'),
-          number: element._patient!.get('PhoneNo'),
-          address: element._patient!.get('Address'),
-          formOfAddress: element._patient!.get('Form'),
+          firstName: element._patient!.get('Firstname').toString(),
+          familyName: element._patient!.get('Lastname').toString(),
+          email: element._patient!.get('username').toString(),
+          number: element._patient!.get('PhoneNo').toString(),
+          address: element._patient!.get('Address').toString(),
+          formOfAddress: element._patient!.get('Form').toString(),
         );
 
         PatientData patientData = PatientData(
           bodyHeight: element._patientData!.get('BodyHeight').toDouble(),
           patientID: element._patientData!.get('Patient').toString(),
-          caseNumber: element._patientData!.get('CaseNumber'),
-          instKey: element._patientData!.get('inst_key'),
+          caseNumber: element._patientData!.get('CaseNumber').toString(),
+          instKey: element._patientData!.get('inst_key').toString(),
         );
 
         PatientProfile patientProfile = PatientProfile(
-          weightBMIEnabled:
-              element._patientProfile!.get('Weight_BMI'),
-          heartFrequencyEnabled:
-              element._patientProfile!.get('HeartRate'),
-          bloodPressureEnabled:
-              element._patientProfile!.get('BloodPressure'),
+          weightBMIEnabled: element._patientProfile!.get('Weight_BMI'),
+          heartFrequencyEnabled: element._patientProfile!.get('HeartRate'),
+          bloodPressureEnabled: element._patientProfile!.get('BloodPressure'),
           bloodSugarLevelsEnabled: element._patientProfile!.get('BloodSugar'),
-          walkDistanceEnabled:
-              element._patientProfile!.get('WalkingDistance'),
-          sleepDurationEnabled:
-              element._patientProfile!.get('SleepDuration'),
-          sleepQualityEnabled:
-              element._patientProfile!.get('SISQS'),
+          walkDistanceEnabled: element._patientProfile!.get('WalkingDistance'),
+          sleepDurationEnabled: element._patientProfile!.get('SleepDuration'),
+          sleepQualityEnabled: element._patientProfile!.get('SISQS'),
           painEnabled: element._patientProfile!.get('Pain'),
           phq4Enabled: element._patientProfile!.get('PHQ4'),
-          medicationEnabled:
-              element._patientProfile!.get('Medication'),
-          therapyEnabled:
-              element._patientProfile!.get('Therapies'),
-          doctorsVisitEnabled:
-              element._patientProfile!.get('Stays'),
-          patientObjectId:
-              element._patientProfile!.get('Patient').toString(),
-          doctorObjectId:
-              element._patientProfile!.get('Doctor').toString(),
+          medicationEnabled: element._patientProfile!.get('Medication'),
+          therapyEnabled: element._patientProfile!.get('Therapies'),
+          doctorsVisitEnabled: element._patientProfile!.get('Stays'),
+          patientObjectId: element._patientProfile!.get('Patient').toString(),
+          doctorObjectId: element._patientProfile!.get('Doctor').toString(),
         );
 
         objectList.add(
