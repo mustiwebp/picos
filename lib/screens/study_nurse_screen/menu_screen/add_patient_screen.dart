@@ -99,10 +99,11 @@ class _AddPatientScreenState extends State<AddPatientScreen> {
   Widget build(BuildContext context) {
     _title ??= AppLocalizations.of(context)!.editPatientInformation;
 
-    Object? patientsListEdit = ModalRoute.of(context)!.settings.arguments;
+    PatientsListElement? patientsListElement =
+        ModalRoute.of(context)!.settings.arguments as PatientsListElement;
 
-    if (_patientsListElement == null && patientsListEdit != null) {
-      _patientsListElement = patientsListEdit as PatientsListElement;
+    if (_patientsListElement == null) {
+      _patientsListElement = patientsListElement;
 
       _weightBMI = _patientsListElement!.patientProfile.weightBMIEnabled;
       _heartFrequency =
@@ -526,7 +527,8 @@ class _AddPatientScreenState extends State<AddPatientScreen> {
                 );
 
                 PatientProfile newPatientProfile;
-                newPatientProfile = _patientsListElement!.patientProfile.copyWith(
+                newPatientProfile =
+                    _patientsListElement!.patientProfile.copyWith(
                   weightBMIEnabled: _weightBMI,
                   heartFrequencyEnabled: _heartFrequency,
                   bloodPressureEnabled: _bloodPressure,
@@ -550,8 +552,8 @@ class _AddPatientScreenState extends State<AddPatientScreen> {
                 );
 
                 context
-                  .read<ObjectsListBloc<BackendPatientsListApi>>()
-                  .add(SaveObject(newPatientListElement));
+                    .read<ObjectsListBloc<BackendPatientsListApi>>()
+                    .add(SaveObject(newPatientListElement));
                 Navigator.of(context).pop();
               }
             },

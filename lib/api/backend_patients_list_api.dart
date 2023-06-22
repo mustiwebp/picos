@@ -17,7 +17,7 @@
 
 import 'dart:async';
 
-import 'package:parse_server_sdk/parse_server_sdk.dart';
+import 'package:flutter/foundation.dart';
 import 'package:picos/api/backend_objects_api.dart';
 import 'package:picos/models/abstract_database_object.dart';
 import 'package:picos/models/patient.dart';
@@ -27,60 +27,14 @@ import 'package:picos/models/patient_profile.dart';
 import 'package:collection/collection.dart';
 import 'package:picos/util/backend.dart';
 
-/// Helper class for Join tables
-class PatientJoinResult {
-  /// Constructur
-  PatientJoinResult(this._patient, this._patientData, this._patientProfile);
-
-  ParseObject? _patient;
-
-  ParseObject? _patientData;
-
-  ParseObject? _patientProfile;
-
-  /// set patient
-  ParseObject? getPatient() {
-    return _patient;
-  }
-
-  /// Set patient data
-  ParseObject? getPatientData() {
-    return _patientData;
-  }
-
-  /// Set patient profile
-  ParseObject? getPatientProfile() {
-    return _patientProfile;
-  }
-
-  /// set patient
-  void setPatient(ParseObject newPatient) {
-    _patient = newPatient;
-  }
-
-  /// Set patient data
-  void setPatientData(ParseObject newPatientData) {
-    _patientData = newPatientData;
-  }
-
-  /// Set patient profile
-  void setPatientProfile(ParseObject newPatientProfile) {
-    _patientProfile = newPatientProfile;
-  }
-}
-
 /// API for calling the corresponding tables for the patient list.
 class BackendPatientsListApi extends BackendObjectsApi {
   @override
   Future<void> saveObject(AbstractDatabaseObject object) async {
-    PatientData patientData;
-    PatientProfile patientProfile;
-
     try {
       dynamic responsePatientData =
           await Backend.saveObject((object as PatientsListElement).patientData);
-
-      patientData = object.patientData.copyWith(
+      PatientData patientData = object.patientData.copyWith(
         objectId: responsePatientData['objectId'],
         createdAt: DateTime.tryParse(responsePatientData['createdAt'] ?? '') ??
             object.patientData.createdAt,
@@ -90,8 +44,7 @@ class BackendPatientsListApi extends BackendObjectsApi {
 
       dynamic responsePatientProfile =
           await Backend.saveObject(object.patientProfile);
-
-      patientProfile = object.patientProfile.copyWith(
+      PatientProfile patientProfile = object.patientProfile.copyWith(
         objectId: responsePatientProfile['objectId'],
         createdAt:
             DateTime.tryParse(responsePatientProfile['createdAt'] ?? '') ??
@@ -111,129 +64,114 @@ class BackendPatientsListApi extends BackendObjectsApi {
       if (index >= 0) {
         objectList[index] = object;
         objectList = <AbstractDatabaseObject>[...objectList];
-      }
-
-      if (index < 0) {
+      } else {
         objectList = <AbstractDatabaseObject>[...objectList, object];
       }
 
       dispatch();
     } catch (e) {
-      print(e);
+      if (kDebugMode) {
+        print('Error while saving the object: $e');
+      }
     }
   }
 
   @override
   Future<Stream<List<AbstractDatabaseObject>>> getObjects() async {
     try {
-      ParseObject patient = ParseObject(Patient.databaseTable);
+      List<dynamic> responsePatient =
+          await Backend.getAll(Patient.databaseTable);
+      List<dynamic> responsePatientData =
+          await Backend.getAll(PatientData.databaseTable);
+      List<dynamic> responsePatientProfile =
+          await Backend.getAll(PatientProfile.databaseTable);
 
-      ParseObject patientData = ParseObject(PatientData.databaseTable);
+      List<Patient> patientResults = <Patient>[];
+      List<PatientData> patientDataResults = <PatientData>[];
+      List<PatientProfile> patientProfileResults = <PatientProfile>[];
 
-      ParseObject patientProfile = ParseObject(PatientProfile.databaseTable);
+      for (dynamic element in responsePatient) {
+        patientResults.add(
+          Patient(
+            firstName: element['Firstname'] ?? '',
+            familyName: element['Lastname'] ?? '',
+            email: element['username'] ?? '',
+            number: element['PhoneNo'] ?? '',
+            address: element['Address'] ?? '',
+            formOfAddress: element['Form'] ?? '',
+            objectId: element['objectId'],
+            createdAt: DateTime.parse(element['createdAt']),
+            updatedAt: DateTime.parse(element['updatedAt']),
+          ),
+        );
+      }
 
-      final QueryBuilder<ParseObject> parseQueryPatient =
-          QueryBuilder<ParseObject>(patient);
+      for (dynamic element in responsePatientData) {
+        patientDataResults.add(
+          PatientData(
+            bodyHeight: element['BodyHeight']['estimateNumber'].toDouble(),
+            patientID: element['ID'],
+            caseNumber: element['CaseNumber'],
+            instKey: element['inst_key'],
+            objectId: element['objectId'],
+            patientObjectId: element['Patient']['objectId'],
+            doctorObjectId: element['Doctor']['objectId'],
+            createdAt: DateTime.parse(element['createdAt']),
+            updatedAt: DateTime.parse(element['updatedAt']),
+          ),
+        );
+      }
 
-      final QueryBuilder<ParseObject> parseQueryPatientData =
-          QueryBuilder<ParseObject>(patientData);
+      for (dynamic element in responsePatientProfile) {
+        patientProfileResults.add(
+          PatientProfile(
+            weightBMIEnabled: element['Weight_BMI'],
+            heartFrequencyEnabled: element['HeartRate'],
+            bloodPressureEnabled: element['BloodPressure'],
+            bloodSugarLevelsEnabled: element['BloodSugar'],
+            walkDistanceEnabled: element['WalkingDistance'],
+            sleepDurationEnabled: element['SleepDuration'],
+            sleepQualityEnabled: element['SISQS'],
+            painEnabled: element['Pain'],
+            phq4Enabled: element['PHQ4'],
+            medicationEnabled: element['Medication'],
+            therapyEnabled: element['Therapies'],
+            doctorsVisitEnabled: element['Stays'],
+            patientObjectId: element['Patient']['objectId'],
+            doctorObjectId: element['Doctor']['objectId'],
+            objectId: element['objectId'],
+            createdAt: DateTime.parse(element['createdAt']),
+            updatedAt: DateTime.parse(element['updatedAt']),
+          ),
+        );
+      }
 
-      final QueryBuilder<ParseObject> parseQueryPatientProfile =
-          QueryBuilder<ParseObject>(patientProfile);
-
-      List<PatientJoinResult> joinQueryResults = <PatientJoinResult>[];
-
-      List<ParseObject> patientResults = await parseQueryPatient.find();
-      List<ParseObject> patientDataResults = await parseQueryPatientData.find();
-      List<ParseObject> patientProfileResults =
-          await parseQueryPatientProfile.find();
-
-      for (ParseObject patientObject in patientResults) {
+      for (Patient patientObject in patientResults) {
         String? patientObjectId = patientObject.objectId;
 
-        ParseObject? matchingPatientData = patientDataResults.firstWhereOrNull(
-          (ParseObject patientDataObject) =>
-              patientDataObject.get('Patient')?.objectId == patientObjectId,
+        PatientData? matchingPatientData = patientDataResults.firstWhereOrNull(
+          (PatientData patientDataObject) =>
+              patientDataObject.patientObjectId == patientObjectId,
         );
 
-        ParseObject? matchingPatientProfile =
+        PatientProfile? matchingPatientProfile =
             patientProfileResults.firstWhereOrNull(
-          (ParseObject patientProfileObject) =>
-              patientProfileObject.get('Patient')?.objectId == patientObjectId,
+          (PatientProfile patientProfileObject) =>
+              patientProfileObject.patientObjectId == patientObjectId,
         );
 
         if (matchingPatientData != null && matchingPatientProfile != null) {
-          PatientJoinResult patientJoinResult = PatientJoinResult(
-            patientObject,
-            matchingPatientData,
-            matchingPatientProfile,
-          );
-          joinQueryResults.add(patientJoinResult);
-        }
-      }
-
-      try {
-        for (PatientJoinResult element in joinQueryResults) {
-          Patient patient = Patient(
-            firstName: element._patient!.get('Firstname').toString(),
-            familyName: element._patient!.get('Lastname').toString(),
-            email: element._patient!.get('username').toString(),
-            number: element._patient!.get('PhoneNo').toString(),
-            address: element._patient!.get('Address').toString(),
-            formOfAddress: element._patient!.get('Form').toString(),
-            objectId: element._patient!.get('objectId').toString(),
-            createdAt: element._patient!.get('createdAt'),
-            updatedAt: element._patient!.get('updatedAt'),
-          );
-
-          PatientData patientData = PatientData(
-            bodyHeight: element._patientData!.get('BodyHeight').toDouble(),
-            patientID: element._patientData!.get('ID').toString(),
-            caseNumber: element._patientData!.get('CaseNumber').toString(),
-            instKey: element._patientData!.get('inst_key').toString(),
-            objectId: element._patientData!.get('objectId').toString(),
-            patientObjectId:
-                element._patientData!.get('Patient')?.objectId.toString(),
-            doctorObjectId:
-                element._patientData!.get('Doctor')?.objectId.toString(),
-            createdAt: element._patientData!.get('createdAt'),
-            updatedAt: element._patientData!.get('updatedAt'),
-          );
-
-          PatientProfile patientProfile = PatientProfile(
-            weightBMIEnabled: element._patientProfile!.get('Weight_BMI'),
-            heartFrequencyEnabled: element._patientProfile!.get('HeartRate'),
-            bloodPressureEnabled: element._patientProfile!.get('BloodPressure'),
-            bloodSugarLevelsEnabled: element._patientProfile!.get('BloodSugar'),
-            walkDistanceEnabled:
-                element._patientProfile!.get('WalkingDistance'),
-            sleepDurationEnabled: element._patientProfile!.get('SleepDuration'),
-            sleepQualityEnabled: element._patientProfile!.get('SISQS'),
-            painEnabled: element._patientProfile!.get('Pain'),
-            phq4Enabled: element._patientProfile!.get('PHQ4'),
-            medicationEnabled: element._patientProfile!.get('Medication'),
-            therapyEnabled: element._patientProfile!.get('Therapies'),
-            doctorsVisitEnabled: element._patientProfile!.get('Stays'),
-            patientObjectId: element._patientProfile!.get('Patient')?.objectId,
-            doctorObjectId: element._patientProfile!.get('Doctor')?.objectId,
-            objectId: element._patientProfile!.get('objectId').toString(),
-            createdAt: element._patientProfile!.get('createdAt'),
-            updatedAt: element._patientProfile!.get('updatedAt'),
-          );
 
           objectList.add(
             PatientsListElement(
-              patient: patient,
-              patientData: patientData,
-              patientProfile: patientProfile,
-              objectId: patient.objectId,
+              patient: patientObject,
+              patientData: matchingPatientData,
+              patientProfile: matchingPatientProfile,
+              objectId: patientObject.objectId,
             ),
           );
         }
-      } catch (e) {
-        return Stream<List<PatientsListElement>>.error(e);
       }
-
       return getObjectsStream();
     } catch (e) {
       return Stream<List<PatientsListElement>>.error(e);
