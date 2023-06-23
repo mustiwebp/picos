@@ -31,62 +31,62 @@ import 'package:picos/widgets/picos_select.dart';
 import 'package:picos/widgets/picos_text_field.dart';
 
 /// A screen for adding new patient.
-class AddPatientScreen extends StatefulWidget {
+class EditPatientScreen extends StatefulWidget {
   /// Creates the AddPatientScreen.
-  const AddPatientScreen({Key? key}) : super(key: key);
+  const EditPatientScreen({Key? key}) : super(key: key);
 
   @override
-  State<AddPatientScreen> createState() => _AddPatientScreenState();
+  State<EditPatientScreen> createState() => _EditPatientScreenState();
 }
 
-class _AddPatientScreenState extends State<AddPatientScreen> {
+class _EditPatientScreenState extends State<EditPatientScreen> {
   /// Local variable for weight and BMI.
-  late bool _weightBMI;
+  bool _weightBMI = false;
 
   /// Local variable for heart frequency.
-  late bool _heartFrequency;
+  bool _heartFrequency = false;
 
   /// Local variable for blood pressure.
-  late bool _bloodPressure;
+  bool _bloodPressure = false;
 
   /// Local variable for blood sugar levels.
-  late bool _bloodSugarLevels;
+  bool _bloodSugarLevels = false;
 
   /// Local variable for walk distance.
-  late bool _walkDistance;
+  bool _walkDistance = false;
 
   /// Local variable for sleep duration.
-  late bool _sleepDuration;
+  bool _sleepDuration = false;
 
   /// Local variable for sleep quality.
-  late bool _sleepQuality;
+  bool _sleepQuality = false;
 
   /// Local variable for pain.
-  late bool _pain;
+  bool _pain = false;
 
   /// Local variable for blood PHQ4.
-  late bool _phq4;
+  bool _phq4 = false;
 
   /// Local variable for medication.
-  late bool _medication;
+  bool _medication = false;
 
   /// Local variable for therapy.
-  late bool _therapy;
+  bool _therapy = false;
 
   /// Local variable for doctor visits.
-  late bool _doctorsVisit;
+  bool _doctorsVisit = false;
 
   /// Local variable for case number.
-  late String _caseNumber;
+  String _caseNumber = '';
 
   /// Local variable for Patient ID.
-  late String _patientID;
+  String _patientID = '';
 
   /// Local vcariable for institute key.
-  late String _instituteKey;
+  String _instituteKey = '';
 
   /// Local variable for body height.
-  late double _bodyHeight;
+  double _bodyHeight = 0.0;
 
   /// Determines if you are able to add the patient.
   bool _addDisabled = true;
