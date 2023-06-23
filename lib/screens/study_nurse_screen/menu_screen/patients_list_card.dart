@@ -16,31 +16,35 @@
 */
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:picos/api/backend_patients_list_api.dart';
 import 'package:picos/models/patients_list_element.dart';
 import 'package:picos/screens/study_nurse_screen/menu_screen/patients_list_card_tile.dart';
 import 'package:picos/widgets/picos_list_card.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../../state/objects_list_bloc.dart';
+
 /// The card displaying patient information.
 class PatientsListCard extends StatelessWidget {
   /// Creates the card with the patient.
   const PatientsListCard(
-    this._patientsListElement, {
-    Key? key,
-  }) : super(key: key);
+      this._patientsListElement, {
+        Key? key,
+      }) : super(key: key);
 
   final PatientsListElement _patientsListElement;
 
   _createCardColumn(
-    String firstDenotation,
-    String firstValue,
-    String secondDenotation,
-    String secondValue,
-    String thirdDenotation,
-    String thirdValue,
-    String fourthDenotation,
-    String fourthValue,
-  ) {
+      String firstDenotation,
+      String firstValue,
+      String secondDenotation,
+      String secondValue,
+      String thirdDenotation,
+      String thirdValue,
+      String fourthDenotation,
+      String fourthValue,
+      ) {
     const double dividerThickness = 1.5;
 
     return Expanded(
@@ -82,13 +86,18 @@ class PatientsListCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PicosListCard(
-      title: '${_patientsListElement.patient.firstName} '
-          '${_patientsListElement.patient.familyName}',
+      title:
+      '${_patientsListElement.patient.firstName} ${_patientsListElement.patient.familyName}',
       edit: () {
         Navigator.of(context).pushNamed(
           '/study-nurse-screen/menu-screen/add-patient',
           arguments: _patientsListElement,
         );
+      },
+      delete: () {
+        context
+            .read<ObjectsListBloc<BackendPatientsListApi>>()
+            .add(RemoveObject(_patientsListElement));
       },
       child: Row(
         children: <Expanded>[
