@@ -17,7 +17,6 @@
 
 import 'dart:async';
 
-import 'package:flutter/foundation.dart';
 import 'package:picos/api/backend_objects_api.dart';
 import 'package:picos/models/abstract_database_object.dart';
 import 'package:picos/models/patient.dart';
@@ -70,9 +69,7 @@ class BackendPatientsListApi extends BackendObjectsApi {
 
       dispatch();
     } catch (e) {
-      if (kDebugMode) {
-        print('Error while saving the object: $e');
-      }
+      Stream<List<PatientsListElement>>.error(e);
     }
   }
 
@@ -161,7 +158,6 @@ class BackendPatientsListApi extends BackendObjectsApi {
         );
 
         if (matchingPatientData != null && matchingPatientProfile != null) {
-
           objectList.add(
             PatientsListElement(
               patient: patientObject,
