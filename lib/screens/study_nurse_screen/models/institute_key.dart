@@ -15,16 +15,20 @@
 *    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-import 'package:flutter/material.dart';
-import 'package:picos/screens/study_nurse_screen/configuration_screen/configuration_screen.dart';
-
-///StudyNurseScreen
-class StudyNurseScreen extends StatelessWidget {
-  ///StudyNurseScreen Constructor
-  const StudyNurseScreen({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const ConfigurationScreen();
-  }
+/// Class for the map of institute keys.
+class InstituteKey {
+  /// Map of institute keys.
+  static Map<String, String> instituteKey = const <String, String>{
+    '100': '100',
+    '101': '101',
+    '102': '102',
+    '103': '103',
+    '104': '104',
+    '105': '105',
+    '201': '201',
+    '300': '300',
+    '400': '400',
+    '501': '501',
+    '502': '502'
+  };
 }

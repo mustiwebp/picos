@@ -125,10 +125,10 @@ class PatientData extends AbstractDatabaseObject {
   final String instKey;
 
   /// denotes the doctor's object ID.
-  final String? doctorObjectId;
+  final String doctorObjectId;
 
   /// denotes the patient's object ID.
-  final String? patientObjectId;
+  final String patientObjectId;
 
   /// The database table the objects are stored in.
   static const String databaseTable = 'patientData';
@@ -239,12 +239,12 @@ class PatientData extends AbstractDatabaseObject {
         'WEZnDisease': weznDisease,
         'inst_key': instKey,
         'Patient': <String, String>{
-          'objectId': patientObjectId!,
+          'objectId': patientObjectId,
           '__type': 'Pointer',
           'className': '_User'
         },
         'Doctor': <String, String>{
-          'objectId': doctorObjectId!,
+          'objectId': doctorObjectId,
           '__type': 'Pointer',
           'className': '_User'
         },

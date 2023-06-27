@@ -22,12 +22,14 @@ import 'package:picos/api/backend_patients_list_api.dart';
 import 'package:picos/models/patient_data.dart';
 import 'package:picos/models/patient_profile.dart';
 import 'package:picos/models/patients_list_element.dart';
+import 'package:picos/screens/study_nurse_screen/models/institute_key.dart';
 import 'package:picos/state/objects_list_bloc.dart';
 import 'package:picos/widgets/picos_add_button_bar.dart';
 import 'package:picos/widgets/picos_body.dart';
 import 'package:picos/widgets/picos_label.dart';
 import 'package:picos/widgets/picos_screen_frame.dart';
 import 'package:picos/widgets/picos_select.dart';
+import 'package:picos/widgets/picos_switch.dart';
 import 'package:picos/widgets/picos_text_field.dart';
 
 /// A screen for adding new patient.
@@ -95,15 +97,37 @@ class _EditPatientScreenState extends State<EditPatientScreen> {
 
   PatientsListElement? _patientsListElement;
 
+  Column _picosSwitchAndSizedBox(
+    bool valueProfile,
+    Function(bool value) function,
+    String title,
+    ShapeBorder shape,
+  ) {
+    return Column(
+      children: <Widget>[
+        PicosSwitch(
+          initialValue: valueProfile,
+          onChanged: function,
+          title: title,
+          shape: shape,
+        ),
+        const SizedBox(
+          height: 25,
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    _title ??= AppLocalizations.of(context)!.editPatientInformation;
-
-    PatientsListElement? patientsListElement =
-        ModalRoute.of(context)!.settings.arguments as PatientsListElement;
-
     if (_patientsListElement == null) {
+      PatientsListElement? patientsListElement =
+          ModalRoute.of(context)!.settings.arguments as PatientsListElement;
+
       _patientsListElement = patientsListElement;
+
+      _title = '${_patientsListElement!.patient.firstName} '
+          '${_patientsListElement!.patient.familyName}';
 
       _weightBMI = _patientsListElement!.patientProfile.weightBMIEnabled;
       _heartFrequency =
@@ -149,211 +173,130 @@ class _EditPatientScreenState extends State<EditPatientScreen> {
             child: Column(
               children: <Widget>[
                 PicosLabel(AppLocalizations.of(context)!.vitalValues),
-                SwitchListTile(
-                  value: _weightBMI,
-                  onChanged: (bool value) {
+                _picosSwitchAndSizedBox(
+                  _weightBMI,
+                  (bool value) {
                     setState(() {
                       _addDisabled = false;
                       _weightBMI = value;
                     });
                   },
-                  secondary: const Icon(Icons.monitor_weight_outlined),
-                  title: Text(
-                    AppLocalizations.of(context)!.weightBMI,
-                    style: const TextStyle(
-                      fontSize: 16,
-                    ),
-                  ),
-                  shape: const Border(
+                  AppLocalizations.of(context)!.weightBMI,
+                  const Border(
                     bottom: BorderSide(color: Colors.grey),
                   ),
                 ),
-                const SizedBox(
-                  height: 25,
-                ),
-                SwitchListTile(
-                  value: _heartFrequency,
-                  onChanged: (bool value) {
+                _picosSwitchAndSizedBox(
+                  _heartFrequency,
+                  (bool value) {
                     setState(() {
                       _addDisabled = false;
                       _heartFrequency = value;
                     });
                   },
-                  secondary: const Icon(Icons.monitor_heart_outlined),
-                  title: Text(
-                    AppLocalizations.of(context)!.heartFrequency,
-                    style: const TextStyle(
-                      fontSize: 16,
-                    ),
-                  ),
-                  shape: const Border(
+                  AppLocalizations.of(context)!.heartFrequency,
+                  const Border(
                     bottom: BorderSide(color: Colors.grey),
                   ),
                 ),
-                const SizedBox(
-                  height: 25,
-                ),
-                SwitchListTile(
-                  value: _bloodPressure,
-                  onChanged: (bool value) {
+                _picosSwitchAndSizedBox(
+                  _bloodPressure,
+                  (bool value) {
                     setState(() {
                       _addDisabled = false;
                       _bloodPressure = value;
                     });
                   },
-                  secondary: const Icon(Icons.bloodtype_outlined),
-                  title: Text(
-                    AppLocalizations.of(context)!.bloodPressure,
-                    style: const TextStyle(
-                      fontSize: 16,
-                    ),
-                  ),
-                  shape: const Border(
+                  AppLocalizations.of(context)!.bloodPressure,
+                  const Border(
                     bottom: BorderSide(color: Colors.grey),
                   ),
                 ),
-                const SizedBox(
-                  height: 25,
-                ),
-                SwitchListTile(
-                  value: _bloodSugarLevels,
-                  onChanged: (bool value) {
+                _picosSwitchAndSizedBox(
+                  _bloodSugarLevels,
+                  (bool value) {
                     setState(() {
                       _addDisabled = false;
                       _bloodSugarLevels = value;
                     });
                   },
-                  secondary: const Icon(Icons.device_thermostat_outlined),
-                  title: Text(
-                    AppLocalizations.of(context)!.bloodSugar,
-                    style: const TextStyle(
-                      fontSize: 16,
-                    ),
-                  ),
-                  shape: const Border(
+                  AppLocalizations.of(context)!.bloodSugar,
+                  const Border(
                     bottom: BorderSide(color: Colors.grey),
                   ),
-                ),
-                const SizedBox(
-                  height: 25,
                 ),
                 PicosLabel(AppLocalizations.of(context)!.activityAndRest),
                 const SizedBox(
                   height: 10,
                 ),
-                SwitchListTile(
-                  value: _walkDistance,
-                  onChanged: (bool value) {
+                _picosSwitchAndSizedBox(
+                  _walkDistance,
+                  (bool value) {
                     setState(() {
                       _addDisabled = false;
                       _walkDistance = value;
                     });
                   },
-                  secondary: const Icon(Icons.directions_walk_outlined),
-                  title: Text(
-                    AppLocalizations.of(context)!.walkDistance,
-                    style: const TextStyle(
-                      fontSize: 16,
-                    ),
-                  ),
-                  shape: const Border(
+                  AppLocalizations.of(context)!.walkDistance,
+                  const Border(
                     bottom: BorderSide(color: Colors.grey),
                   ),
                 ),
-                const SizedBox(
-                  height: 25,
-                ),
-                SwitchListTile(
-                  value: _sleepDuration,
-                  onChanged: (bool value) {
+                _picosSwitchAndSizedBox(
+                  _sleepDuration,
+                  (bool value) {
                     setState(() {
                       _addDisabled = false;
                       _sleepDuration = value;
                     });
                   },
-                  secondary: const Icon(Icons.access_alarm_outlined),
-                  title: Text(
-                    AppLocalizations.of(context)!.sleepDuration,
-                    style: const TextStyle(
-                      fontSize: 16,
-                    ),
-                  ),
-                  shape: const Border(
+                  AppLocalizations.of(context)!.sleepDuration,
+                  const Border(
                     bottom: BorderSide(color: Colors.grey),
                   ),
                 ),
-                const SizedBox(
-                  height: 25,
-                ),
-                SwitchListTile(
-                  value: _sleepQuality,
-                  onChanged: (bool value) {
+                _picosSwitchAndSizedBox(
+                  _sleepQuality,
+                  (bool value) {
                     setState(() {
                       _addDisabled = false;
                       _sleepQuality = value;
                     });
                   },
-                  secondary: const Icon(Icons.bed_outlined),
-                  title: Text(
-                    AppLocalizations.of(context)!.sleepQuality,
-                    style: const TextStyle(
-                      fontSize: 16,
-                    ),
-                  ),
-                  shape: const Border(
+                  AppLocalizations.of(context)!.sleepQuality,
+                  const Border(
                     bottom: BorderSide(color: Colors.grey),
                   ),
-                ),
-                const SizedBox(
-                  height: 25,
                 ),
                 PicosLabel(AppLocalizations.of(context)!.bodyAndMind),
                 const SizedBox(
                   height: 10,
                 ),
-                SwitchListTile(
-                  value: _pain,
-                  onChanged: (bool value) {
+                _picosSwitchAndSizedBox(
+                  _pain,
+                  (bool value) {
                     setState(() {
                       _addDisabled = false;
                       _pain = value;
                     });
                   },
-                  secondary: const Icon(Icons.mood_bad_outlined),
-                  title: Text(
-                    AppLocalizations.of(context)!.pain,
-                    style: const TextStyle(
-                      fontSize: 16,
-                    ),
-                  ),
-                  shape: const Border(
+                  AppLocalizations.of(context)!.pain,
+                  const Border(
                     bottom: BorderSide(color: Colors.grey),
                   ),
                 ),
-                const SizedBox(
-                  height: 25,
-                ),
-                SwitchListTile(
-                  value: _phq4,
-                  onChanged: (bool value) {
+                _picosSwitchAndSizedBox(
+                  _phq4,
+                  (bool value) {
                     setState(() {
                       _addDisabled = false;
                       _phq4 = value;
                     });
                   },
-                  secondary: const Icon(Icons.psychology_outlined),
-                  title: const Text(
-                    'PHQ-4',
-                    style: TextStyle(
-                      fontSize: 16,
-                    ),
-                  ),
-                  shape: const Border(
+                  'PHQ-4',
+                  const Border(
                     bottom: BorderSide(color: Colors.grey),
                   ),
-                ),
-                const SizedBox(
-                  height: 25,
                 ),
                 PicosLabel(
                   AppLocalizations.of(context)!.medicationAndTherapy,
@@ -361,71 +304,44 @@ class _EditPatientScreenState extends State<EditPatientScreen> {
                 const SizedBox(
                   height: 10,
                 ),
-                SwitchListTile(
-                  value: _medication,
-                  onChanged: (bool value) {
+                _picosSwitchAndSizedBox(
+                  _medication,
+                  (bool value) {
                     setState(() {
                       _addDisabled = false;
                       _medication = value;
                     });
                   },
-                  secondary: const Icon(Icons.medication),
-                  title: Text(
-                    AppLocalizations.of(context)!.medication,
-                    style: const TextStyle(
-                      fontSize: 16,
-                    ),
-                  ),
-                  shape: const Border(
+                  AppLocalizations.of(context)!.medication,
+                  const Border(
                     bottom: BorderSide(color: Colors.grey),
                   ),
                 ),
-                const SizedBox(
-                  height: 25,
-                ),
-                SwitchListTile(
-                  value: _therapy,
-                  onChanged: (bool value) {
+                _picosSwitchAndSizedBox(
+                  _therapy,
+                  (bool value) {
                     setState(() {
                       _addDisabled = false;
                       _therapy = value;
                     });
                   },
-                  secondary: const Icon(Icons.healing_outlined),
-                  title: Text(
-                    AppLocalizations.of(context)!.therapy,
-                    style: const TextStyle(
-                      fontSize: 16,
-                    ),
-                  ),
-                  shape: const Border(
+                  AppLocalizations.of(context)!.therapy,
+                  const Border(
                     bottom: BorderSide(color: Colors.grey),
                   ),
                 ),
-                const SizedBox(
-                  height: 25,
-                ),
-                SwitchListTile(
-                  value: _doctorsVisit,
-                  onChanged: (bool value) {
+                _picosSwitchAndSizedBox(
+                  _doctorsVisit,
+                  (bool value) {
                     setState(() {
                       _addDisabled = false;
                       _doctorsVisit = value;
                     });
                   },
-                  secondary: const Icon(Icons.local_hospital_outlined),
-                  title: Text(
-                    AppLocalizations.of(context)!.doctorsVisit,
-                    style: const TextStyle(
-                      fontSize: 16,
-                    ),
-                  ),
-                  shape: const Border(
+                  AppLocalizations.of(context)!.doctorsVisit,
+                  const Border(
                     bottom: BorderSide(color: Colors.grey),
                   ),
-                ),
-                const SizedBox(
-                  height: 25,
                 ),
                 PicosLabel(AppLocalizations.of(context)!.caseNumber),
                 PicosTextField(
@@ -463,19 +379,7 @@ class _EditPatientScreenState extends State<EditPatientScreen> {
                 ),
                 PicosLabel(AppLocalizations.of(context)!.instituteKey),
                 PicosSelect(
-                  selection: const <String, String>{
-                    '100': '100',
-                    '101': '101',
-                    '102': '102',
-                    '103': '103',
-                    '104': '104',
-                    '105': '105',
-                    '201': '201',
-                    '300': '300',
-                    '400': '400',
-                    '501': '501',
-                    '502': '502'
-                  },
+                  selection: InstituteKey.instituteKey,
                   callBackFunction: (String? value) {
                     setState(() {
                       _addDisabled = false;
@@ -546,7 +450,6 @@ class _EditPatientScreenState extends State<EditPatientScreen> {
                 PatientsListElement newPatientListElement;
 
                 newPatientListElement = _patientsListElement!.copyWith(
-                  patient: _patientsListElement!.patient,
                   patientData: newPatientData,
                   patientProfile: newPatientProfile,
                 );

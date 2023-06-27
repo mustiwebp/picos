@@ -187,7 +187,7 @@
     "minorPain": "Geringe Schmerzen",
     "moderatePain": "Moderate Schmerzen",
     "strongPain": "Starke Schmerzen",
-    "caseNumber": "Fallnummer",
+    "caseNumber": "Fallnr.",
     "patientID": "PatientenID",
     "weight": "Gewicht",
     "height": "Größe",
@@ -240,5 +240,5 @@
     "noData": "Keine Daten",
     "checkValue": "Bitte prüfe ob der Eintrag korrekt ist!",
     "myPatients": "Meine Patienten",
-    "editPatientInformation": "Bearbeite Patienteninformationen"
+    "editPatientInformation": "Bearbeite Informationen"
 }
