@@ -245,6 +245,7 @@ class LaboratoryValues extends StatelessWidget {
     const String pgml = 'pg/mL';
     const String qdl = 'q/dL';
     const String ul = 'U/L';
+    const String percent = '%';
     return CatalogOfItemsPage(
       title: AppLocalizations.of(context)!.laboratoryValues,
       padding: EdgeInsets.zero,
@@ -275,7 +276,7 @@ class LaboratoryValues extends StatelessWidget {
                 AppLocalizations.of(context)!.lymphocytePercentage,
               ),
               PicosNumberField(
-                hint: '%',
+                hint: percent,
                 initialValue: initialLymphocytePercentage?.toString(),
                 onChanged: (String value) {
                   lymphocytePercentageCallback(double.tryParse(value));
@@ -373,7 +374,7 @@ class LaboratoryValues extends StatelessWidget {
               ),
               CatalogOfItemsLabel(AppLocalizations.of(context)!.hematocrit),
               PicosNumberField(
-                hint: '%',
+                hint: percent,
                 initialValue: initialHematocrit?.toString(),
                 onChanged: (String value) {
                   hematocritCallback(double.tryParse(value));
