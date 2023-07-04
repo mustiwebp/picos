@@ -246,7 +246,7 @@ class LaboratoryValues extends StatelessWidget {
     const String qdl = 'q/dL';
     const String ul = 'U/L';
     return CatalogOfItemsPage(
-      title: AppLocalizations.of(context)!.icuDiagnosis,
+      title: AppLocalizations.of(context)!.laboratoryValues,
       padding: EdgeInsets.zero,
       children: <Widget>[
         Padding(
