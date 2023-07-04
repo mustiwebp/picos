@@ -15,10 +15,12 @@
 *    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:picos/screens/study_nurse_screen/catalog_of_items_screen/pages/blood_gas_analysis.dart';
 import 'package:picos/screens/study_nurse_screen/catalog_of_items_screen/pages/icu_diagnosis.dart';
 import 'package:picos/screens/study_nurse_screen/catalog_of_items_screen/pages/inclusion_criteria.dart';
+import 'package:picos/screens/study_nurse_screen/catalog_of_items_screen/pages/medicaments.dart';
+import 'package:picos/screens/study_nurse_screen/catalog_of_items_screen/pages/respiration_parameters.dart';
 import 'package:picos/screens/study_nurse_screen/catalog_of_items_screen/pages/vital_data.dart';
 
 import '../../../widgets/picos_form_of_address.dart';
@@ -42,7 +44,6 @@ class CatalogOfItemsPageStorage {
     const String pgml = 'pg/mL';
     const String qdl = 'q/dL';
     const String ul = 'U/L';
-
 
     //TODO: Create further pages like shown below. The commented out code is
     //TODO: supposed to be used for that.
@@ -136,301 +137,111 @@ class CatalogOfItemsPageStorage {
           initialSap2: systolicArterialPressure2,
         ),
       ),
+      PicosPageViewItem(
+        child: RespirationParameters(
+          initialTidalVolume: tidalVolume,
+          initialRespiratoryRate1: respiratoryRate1,
+          initialRespiratoryRate2: respiratoryRate2,
+          initialOxygenSaturation1: oxygenSaturation1,
+          initialOxygenSaturation2: oxygenSaturation2,
+          tidalVolumenCallback: (double? value) {
+            tidalVolume = value;
+          },
+          respiratoryRate1Callback: (double? value) {
+            respiratoryRate1 = value;
+          },
+          respiratoryRate2Callback: (double? value) {
+            respiratoryRate2 = value;
+          },
+          oxygenSaturation1Callback: (double? value) {
+            oxygenSaturation1 = value;
+          },
+          oxygenSaturation2Callback: (double? value) {
+            oxygenSaturation2 = value;
+          },
+        ),
+      ),
+      PicosPageViewItem(
+        child: BloodGasAnalysis(
+          initialArterialOxygenSaturation1: arterialOxygenSaturation1,
+          initialArterialOxygenSaturation2: arterialOxygenSaturation2,
+          initialCentralVenousOxygenSaturation1: centralVenousOxygenSaturation1,
+          initialCentralVenousOxygenSaturation2: centralVenousOxygenSaturation2,
+          initialPartialPressureOfOxygen1: partialPressureOfOxygen1,
+          initialPartialPressureOfOxygen2: partialPressureOfOxygen2,
+          initialPartialPressureOfCarbonDioxide1:
+              partialPressureOfCarbonDioxide1,
+          initialPartialPressureOfCarbonDioxide2:
+              partialPressureOfCarbonDioxide2,
+          initialarterialBaseExcess1: arterialBaseExcess1,
+          initialarterialBaseExcess2: arterialBaseExcess2,
+          initialarterialPH1: arterialPH1,
+          initialarterialPH2: arterialPH2,
+          initialArterialSerumBicarbonateConcentration1:
+              arterialSerumBicarbonateConcentration1,
+          initialArterialSerumBicarbonateConcentration2:
+              arterialSerumBicarbonateConcentration2,
+          initialArterialLactate1: arterialLactate1,
+          initialArterialLacatate2: arterialLactate2,
+          initialBloodGlucoseLevel1: bloodGlucoseLevel1,
+          initialBloodGlucoseLevel2: bloodGlucoseLevel2,
+          arterialOxygenSaturationCallback1: (double? value) {
+            arterialOxygenSaturation1 = value;
+          },
+          arterialOxygenSaturationCallback2: (double? value) {
+            arterialOxygenSaturation2 = value;
+          },
+          centralVenousOxygenSaturationCallback1: (double? value) {
+            centralVenousOxygenSaturation1 = value;
+          },
+          centralVenousOxygenSaturationCallback2: (double? value) {
+            centralVenousOxygenSaturation2 = value;
+          },
+          partialPressureOfOxygenCallback1: (double? value) {
+            partialPressureOfOxygen1 = value;
+          },
+          partialPressureOfOxygenCallback2: (double? value) {
+            partialPressureOfOxygen2 = value;
+          },
+          partialPressureOfCarbonDioxideCallback1: (double? value) {
+            partialPressureOfCarbonDioxide1 = value;
+          },
+          partialPressureOfCarbonDioxideCallback2: (double? value) {
+            partialPressureOfCarbonDioxide2 = value;
+          },
+          arterialBaseExcessCallback1: (double? value) {
+            arterialBaseExcess1 = value;
+          },
+          arterialBaseExcessCallback2: (double? value) {
+            arterialBaseExcess2 = value;
+          },
+          arterialPHCallback1: (double? value) {
+            arterialPH1 = value;
+          },
+          arterialPHCallback2: (double? value) {
+            arterialPH2 = value;
+          },
+          arterialSerumBicarbonateConcentrationCallback1: (double? value) {
+            arterialSerumBicarbonateConcentration1 = value;
+          },
+          arterialSerumBicarbonateConcentrationCallback2: (double? value) {
+            arterialSerumBicarbonateConcentration2 = value;
+          },
+          arterialLactateCallback1: (double? value) {
+            arterialLactate1 = value;
+          },
+          arterialLactateCallback2: (double? value) {
+            arterialLactate2 = value;
+          },
+          bloodGlucoseLevelCallback1: (double? value) {
+            bloodGlucoseLevel1 = value;
+          },
+          bloodGlucoseLevelCallback2: (double? value) {
+            bloodGlucoseLevel2 = value;
+          },
+        ),
+      ),
 
-      // PicosPageViewItem(
-      //   child: CatalogOfItemsPage(
-      //       title: 'Atmungsparameter (letzte Werte vor discharge)',
-      //       children: <Widget>[
-      //         Row(
-      //           children: [
-      //             Expanded(
-      //                 child: PicosLabel(
-      //                   'Letztes',
-      //                   fontSize: fontSize,
-      //                   fontWeight: FontWeight.normal,
-      //                 )),
-      //             Expanded(
-      //                 child: PicosLabel(
-      //                   'Vorletztes',
-      //                   fontSize: fontSize,
-      //                   fontWeight: FontWeight.normal,
-      //                 )),
-      //           ],
-      //         ),
-      //         PicosLabel('Vt spontan', fontSize: fontSize),
-      //         PicosNumberField(hint: 'mL'),
-      //         Row(
-      //           children: [
-      //             Expanded(
-      //               child: Column(
-      //                 children: [
-      //                   PicosLabel('SpO2', fontSize: fontSize),
-      //                   PicosNumberField(
-      //                       hint: '%'),
-      //                 ],
-      //               ),
-      //             ),
-      //             Expanded(
-      //               child: Column(
-      //                 children: [
-      //                   PicosLabel('SpO2', fontSize: fontSize),
-      //                   PicosNumberField(
-      //                       hint: '%'),
-      //                 ],
-      //               ),
-      //             ),
-      //           ],
-      //         ),
-      //         Row(
-      //           children: [
-      //             Expanded(
-      //               child: Column(
-      //                 children: [
-      //                   PicosLabel('AF', fontSize: fontSize),
-      //                   PicosNumberField(
-      //                       hint: min),
-      //                 ],
-      //               ),
-      //             ),
-      //             Expanded(
-      //               child: Column(
-      //                 children: [
-      //                   PicosLabel('AF', fontSize: fontSize),
-      //                   PicosNumberField(
-      //                       hint: min),
-      //                 ],
-      //               ),
-      //             ),
-      //           ],
-      //         ),
-      //       ]),
-      // ),
-      // PicosPageViewItem(
-      //   child: CatalogOfItemsPage(
-      //       title: 'Blutgasanalyse (letzte Werte vor discharge)',
-      //       children: <Widget>[
-      //         Row(
-      //           children: [
-      //             Expanded(
-      //                 child: PicosLabel(
-      //                   'Letztes',
-      //                   fontSize: fontSize,
-      //                   fontWeight: FontWeight.normal,
-      //                 )),
-      //             Expanded(
-      //                 child: PicosLabel(
-      //                   'Vorletztes',
-      //                   fontSize: fontSize,
-      //                   fontWeight: FontWeight.normal,
-      //                 )),
-      //           ],
-      //         ),
-      //         Row(
-      //           children: [
-      //             Expanded(
-      //               child: Column(
-      //                 children: [
-      //                   PicosLabel('paO2 (ohne Temp-Korrektur)',
-      //                       fontSize: fontSize),
-      //                   PicosNumberField(
-      //                       hint: mmHg),
-      //                 ],
-      //               ),
-      //             ),
-      //             Expanded(
-      //               child: Column(
-      //                 children: [
-      //                   PicosLabel('paO2 (ohne Temp-Korrektur)',
-      //                       fontSize: fontSize),
-      //                   PicosNumberField(
-      //                       hint: mmHg),
-      //                 ],
-      //               ),
-      //             ),
-      //           ],
-      //         ),
-      //         Row(
-      //           children: [
-      //             Expanded(
-      //               child: Column(
-      //                 children: [
-      //                   PicosLabel('paCO2 (ohne Temp-Korrektur)',
-      //                       fontSize: fontSize),
-      //                   PicosNumberField(
-      //                       hint: mmHg),
-      //                 ],
-      //               ),
-      //             ),
-      //             Expanded(
-      //               child: Column(
-      //                 children: [
-      //                   PicosLabel('paCO2 (ohne Temp-Korrektur)',
-      //                       fontSize: fontSize),
-      //                   PicosNumberField(
-      //                       hint: mmHg),
-      //                 ],
-      //               ),
-      //             ),
-      //           ],
-      //         ),
-      //         Row(
-      //           children: [
-      //             Expanded(
-      //               child: Column(
-      //                 children: [
-      //                   PicosLabel('pH arteriell', fontSize: fontSize),
-      //                   PicosNumberField(
-      //                       hint: '[pH]'),
-      //                 ],
-      //               ),
-      //             ),
-      //             Expanded(
-      //               child: Column(
-      //                 children: [
-      //                   PicosLabel('pH arteriell', fontSize: fontSize),
-      //                   PicosNumberField(
-      //                       hint: '[pH]'),
-      //                 ],
-      //               ),
-      //             ),
-      //           ],
-      //         ),
-      //         Row(
-      //           children: [
-      //             Expanded(
-      //               child: Column(
-      //                 children: [
-      //                   PicosLabel('SaO2', fontSize: fontSize),
-      //                   PicosNumberField(
-      //                       hint: '%'),
-      //                 ],
-      //               ),
-      //             ),
-      //             Expanded(
-      //               child: Column(
-      //                 children: [
-      //                   PicosLabel('SaO2', fontSize: fontSize),
-      //                   PicosNumberField(
-      //                       hint: '%'),
-      //                 ],
-      //               ),
-      //             ),
-      //           ],
-      //         ),
-      //         Row(
-      //           children: [
-      //             Expanded(
-      //               child: Column(
-      //                 children: [
-      //                   PicosLabel('Laktat arteriell', fontSize: fontSize),
-      //                   PicosNumberField(
-      //                       hint: mmoll),
-      //                 ],
-      //               ),
-      //             ),
-      //             Expanded(
-      //               child: Column(
-      //                 children: [
-      //                   PicosLabel('Laktat arteriell', fontSize: fontSize),
-      //                   PicosNumberField(
-      //                       hint: mmoll),
-      //                 ],
-      //               ),
-      //             ),
-      //           ],
-      //         ),
-      //         Row(
-      //           children: [
-      //             Expanded(
-      //               child: Column(
-      //                 children: [
-      //                   PicosLabel('Bicarbonat arteriell',
-      //                       fontSize: fontSize),
-      //                   PicosNumberField(
-      //                       hint: mmoll),
-      //                 ],
-      //               ),
-      //             ),
-      //             Expanded(
-      //               child: Column(
-      //                 children: [
-      //                   PicosLabel('Bicarbonat arteriell',
-      //                       fontSize: fontSize),
-      //                   PicosNumberField(
-      //                       hint: mmoll),
-      //                 ],
-      //               ),
-      //             ),
-      //           ],
-      //         ),
-      //         Row(
-      //           children: [
-      //             Expanded(
-      //               child: Column(
-      //                 children: [
-      //                   PicosLabel('SzvO2', fontSize: fontSize),
-      //                   PicosNumberField(
-      //                       hint: '%'),
-      //                 ],
-      //               ),
-      //             ),
-      //             Expanded(
-      //               child: Column(
-      //                 children: [
-      //                   PicosLabel('SzvO2', fontSize: fontSize),
-      //                   PicosNumberField(
-      //                       hint: '%'),
-      //                 ],
-      //               ),
-      //             ),
-      //           ],
-      //         ),
-      //         Row(
-      //           children: [
-      //             Expanded(
-      //               child: Column(
-      //                 children: [
-      //                   PicosLabel('BE arteriell', fontSize: fontSize),
-      //                   PicosNumberField(
-      //                       hint: mmoll),
-      //                 ],
-      //               ),
-      //             ),
-      //             Expanded(
-      //               child: Column(
-      //                 children: [
-      //                   PicosLabel('BE arteriell', fontSize: fontSize),
-      //                   PicosNumberField(
-      //                       hint: mmoll),
-      //                 ],
-      //               ),
-      //             ),
-      //           ],
-      //         ),
-      //         Row(
-      //           children: [
-      //             Expanded(
-      //               child: Column(
-      //                 children: [
-      //                   PicosLabel('Blutzucker', fontSize: fontSize),
-      //                   PicosNumberField(
-      //                       hint: mgdl),
-      //                 ],
-      //               ),
-      //             ),
-      //             Expanded(
-      //               child: Column(
-      //                 children: [
-      //                   PicosLabel('Blutzucker', fontSize: fontSize),
-      //                   PicosNumberField(
-      //                       hint: mgdl),
-      //                 ],
-      //               ),
-      //             ),
-      //           ],
-      //         ),
-      //       ]),
-      // ),
       // PicosPageViewItem(
       //   child: CatalogOfItemsPage(
       //       title: 'Laborwerte (letzte Werte vor discharge)',
@@ -494,155 +305,179 @@ class CatalogOfItemsPageStorage {
       //         PicosNumberField(hint: 's'),
       //       ]),
       // ),
-      // PicosPageViewItem(
-      //   child: CatalogOfItemsPage(
-      //       title: 'Medikamente (letzte Werte vor discharge)',
-      //       children: <Widget>[
-      //         PicosLabel('Thrombozytenaggregation', fontSize: fontSize),
-      //         PicosTextArea(maxLines: textAreaLines),
-      //         PicosLabel('NOAK', fontSize: fontSize),
-      //         PicosTextArea(maxLines: textAreaLines),
-      //         PicosLabel('Thrombosenprophylaxe', fontSize: fontSize),
-      //         PicosTextArea(maxLines: textAreaLines),
-      //         PicosLabel('Antihypertensiva', fontSize: fontSize),
-      //         PicosTextArea(maxLines: textAreaLines),
-      //         PicosLabel('Antiarrhythmika', fontSize: fontSize),
-      //         PicosTextArea(maxLines: textAreaLines),
-      //         PicosLabel('Antidiabetika', fontSize: fontSize),
-      //         PicosTextArea(maxLines: textAreaLines),
-      //         PicosLabel('Antiinfektiva', fontSize: fontSize),
-      //         PicosTextArea(maxLines: textAreaLines),
-      //       ]),
-      // ),
-      // PicosPageViewItem(
-      //   child: CatalogOfItemsPage(
-      //       padding: EdgeInsets.zero,
-      //       title: 'Patienten Bewegungsdaten',
-      //       children: <Widget>[
-      //         Padding(
-      //           padding: const EdgeInsets.symmetric(horizontal: 15.0),
-      //           child: Column(children: [
-      //             PicosLabel('Alter', fontSize: fontSize),
-      //             PicosNumberField(
-      //               hint: 'Jahre',
-      //               digitsOnly: true,
-      //             ),
-      //             PicosLabel('Geschlecht', fontSize: fontSize),
-      //             PicosFormOfAddress(
-      //               callBackFunction: (value) {},
-      //             ),
-      //             PicosLabel('Körpergewicht', fontSize: fontSize),
-      //             PicosNumberField(hint: 'kg'),
-      //             PicosLabel('Körpergröße', fontSize: fontSize),
-      //             PicosNumberField(
-      //               hint: 'cm',
-      //               digitsOnly: true,
-      //             ),
-      //             PicosLabel('BMI', fontSize: fontSize),
-      //             PicosNumberField(
-      //               hint: 'kg/m2',
-      //             ),
-      //             PicosLabel('ideales Körpergewicht', fontSize: fontSize),
-      //             PicosNumberField(
-      //               hint: 'kg',
-      //             ),
-      //             PicosLabel('Patienten-ID(s)', fontSize: fontSize),
-      //             PicosTextArea(maxLines: textAreaLines),
-      //             PicosLabel('Fallnummer', fontSize: fontSize),
-      //             PicosTextArea(maxLines: textAreaLines),
-      //             PicosLabel(
-      //                 'Entlassungsgrund (verlegt intern, verlegt extern, verstorben)',
-      //                 fontSize: fontSize),
-      //             PicosTextArea(maxLines: textAreaLines),
-      //             PicosLabel('Aufnahmezeitpunkt ICU', fontSize: fontSize),
-      //             PicosDatePicker(
-      //               callBackFunction: (DateTime value) {},
-      //             ),
-      //             PicosLabel('Entlassungszeitpunkt ICU', fontSize: fontSize),
-      //             PicosDatePicker(
-      //               callBackFunction: (DateTime value) {},
-      //             ),
-      //             PicosLabel('Beatmungstage ICU', fontSize: fontSize),
-      //             PicosNumberField(
-      //               hint: 'Tage',
-      //             ),
-      //             PicosLabel('Aufnahmezeitpunkt KRH', fontSize: fontSize),
-      //             PicosDatePicker(
-      //               callBackFunction: (DateTime value) {},
-      //             ),
-      //             PicosLabel('Entlassungszeitpunkt KRH', fontSize: fontSize),
-      //             PicosDatePicker(
-      //               callBackFunction: (DateTime value) {},
-      //             ),
-      //             PicosLabel('ICD-10 Codes', fontSize: fontSize),
-      //             PicosTextField(),
-      //             PicosLabel('Patientenaufenthaltsort/Station',
-      //                 fontSize: fontSize),
-      //             PicosTextArea(maxLines: textAreaLines),
-      //           ]),
-      //         ),
-      //         SwitchListTile(
-      //           value: false,
-      //           onChanged: (bool value) {
-      //             // setState(() {
-      //             //   widget.callbackActivityAndRest(
-      //             //     'entrySleepDurationEnabled',
-      //             //     value,
-      //             //   );
-      //             //   _entrySleepDurationEnabled = value;
-      //             // });
-      //           },
-      //           title: Padding(
-      //             padding: switchTitlePadding,
-      //             child: Text(
-      //               'Lungenprotektive Beatmung >70%',
-      //               style: textStyle,
-      //             ),
-      //           ),
-      //           shape: border,
-      //         ),
-      //         Padding(
-      //           padding: const EdgeInsets.all(15.0),
-      //           child: Column(
-      //             children: [
-      //               PicosLabel('ICU Sterblichkeit', fontSize: fontSize),
-      //               PicosNumberField(
-      //                 hint: '%',
-      //               ),
-      //               PicosLabel('KH Sterblichkeit', fontSize: fontSize),
-      //               PicosNumberField(
-      //                 hint: '%',
-      //               ),
-      //               PicosLabel('KH Aufenthaltsdauer', fontSize: fontSize),
-      //               PicosNumberField(
-      //                 hint: 'Tage',
-      //               ),
-      //               PicosLabel('ICU Aufenthaltsdauer', fontSize: fontSize),
-      //               PicosNumberField(
-      //                 hint: 'Tage',
-      //               ),
-      //               PicosLabel('Wiederaufnahmen ICU in %',
-      //                   fontSize: fontSize),
-      //               PicosNumberField(
-      //                 hint: '%',
-      //               ),
-      //               PicosLabel('Wiederaufnahmen Krankenhaus (x/Jahr)',
-      //                   fontSize: fontSize),
-      //               PicosNumberField(
-      //                 hint: 'n/Jahr',
-      //               ),
-      //               PicosLabel(
-      //                   'Wiedereingliederungszeit nach Krankheit (Tage bis reuptake work)',
-      //                   fontSize: fontSize),
-      //               PicosNumberField(
-      //                 hint: 'Tage',
-      //               ),
-      //             ],
-      //           ),
-      //         )
-      //       ]),
-      // ),
+      PicosPageViewItem(
+        child: Medicaments(
+          plateletAggregationCallback: (String? value) {
+            plateletAggregation = value;
+          },
+          noakCallback: (String? value) {
+            NOAK = value;
+          },
+          thrombosisprophylaxisCallback: (String? value) {
+            thrombosisProphylaxis = value;
+          },
+          antihypertensivesCallback: (String? value) {
+            antihypertensives = value;
+          },
+          antiarrythmicsCallback: (String? value) {
+            antiarrhythmics = value;
+          },
+          antidiabeticsCallback: (String? value) {
+            antidiabetics = value;
+          },
+          antiinfectivesCallback: (String? value) {
+            antiInfectives = value;
+          },
+          steroidsCallback: (String? value) {
+            steroids = value;
+          },
+          inhalativesCallback: (String? value) {
+            inhalatives = value;
+          },
+          analgesicsCallback: (String? value) {
+            analgesics = value;
+          },
+          initialPlateletAggregation: plateletAggregation,
+          initialNoak: NOAK,
+          initialThrombosisProphylaxis: thrombosisProphylaxis,
+          initialAntihypertensives: antihypertensives,
+          initialAntiarrhythmics: antiarrhythmics,
+          initialAntidiabetics: antidiabetics,
+          initialAntiInfectives: antiInfectives,
+          initialSteroids: steroids,
+          initialInhalatives: inhalatives,
+          initialAnalgesics: analgesics,
+        ),
+      ),
     ];
+    // PicosPageViewItem(
+    //   child: CatalogOfItemsPage(
+    //       padding: EdgeInsets.zero,
+    //       title: 'Patienten Bewegungsdaten',
+    //       children: <Widget>[
+    //         Padding(
+    //           padding: const EdgeInsets.symmetric(horizontal: 15.0),
+    //           child: Column(children: [
+    //             PicosLabel('Alter', fontSize: fontSize),
+    //             PicosNumberField(
+    //               hint: 'Jahre',
+    //               digitsOnly: true,
+    //             ),
+    //             PicosLabel('Geschlecht', fontSize: fontSize),
+    //             PicosFormOfAddress(
+    //               callBackFunction: (value) {},
+    //             ),
+    //             PicosLabel('Körpergewicht', fontSize: fontSize),
+    //             PicosNumberField(hint: 'kg'),
+    //             PicosLabel('Körpergröße', fontSize: fontSize),
+    //             PicosNumberField(
+    //               hint: 'cm',
+    //               digitsOnly: true,
+    //             ),
+    //             PicosLabel('BMI', fontSize: fontSize),
+    //             PicosNumberField(
+    //               hint: 'kg/m2',
+    //             ),
+    //             PicosLabel('ideales Körpergewicht', fontSize: fontSize),
+    //             PicosNumberField(
+    //               hint: 'kg',
+    //             ),
+    //             PicosLabel('Patienten-ID(s)', fontSize: fontSize),
+    //             PicosTextArea(maxLines: textAreaLines),
+    //             PicosLabel('Fallnummer', fontSize: fontSize),
+    //             PicosTextArea(maxLines: textAreaLines),
+    //             PicosLabel(
+    //                 'Entlassungsgrund (verlegt intern, verlegt extern, verstorben)',
+    //                 fontSize: fontSize),
+    //             PicosTextArea(maxLines: textAreaLines),
+    //             PicosLabel('Aufnahmezeitpunkt ICU', fontSize: fontSize),
+    //             PicosDatePicker(
+    //               callBackFunction: (DateTime value) {},
+    //             ),
+    //             PicosLabel('Entlassungszeitpunkt ICU', fontSize: fontSize),
+    //             PicosDatePicker(
+    //               callBackFunction: (DateTime value) {},
+    //             ),
+    //             PicosLabel('Beatmungstage ICU', fontSize: fontSize),
+    //             PicosNumberField(
+    //               hint: 'Tage',
+    //             ),
+    //             PicosLabel('Aufnahmezeitpunkt KRH', fontSize: fontSize),
+    //             PicosDatePicker(
+    //               callBackFunction: (DateTime value) {},
+    //             ),
+    //             PicosLabel('Entlassungszeitpunkt KRH', fontSize: fontSize),
+    //             PicosDatePicker(
+    //               callBackFunction: (DateTime value) {},
+    //             ),
+    //             PicosLabel('ICD-10 Codes', fontSize: fontSize),
+    //             PicosTextField(),
+    //             PicosLabel('Patientenaufenthaltsort/Station',
+    //                 fontSize: fontSize),
+    //             PicosTextArea(maxLines: textAreaLines),
+    //           ]),
+    //         ),
+    //         SwitchListTile(
+    //           value: false,
+    //           onChanged: (bool value) {
+    //             // setState(() {
+    //             //   widget.callbackActivityAndRest(
+    //             //     'entrySleepDurationEnabled',
+    //             //     value,
+    //             //   );
+    //             //   _entrySleepDurationEnabled = value;
+    //             // });
+    //           },
+    //           title: Padding(
+    //             padding: switchTitlePadding,
+    //             child: Text(
+    //               'Lungenprotektive Beatmung >70%',
+    //               style: textStyle,
+    //             ),
+    //           ),
+    //           shape: border,
+    //         ),
+    //         Padding(
+    //           padding: const EdgeInsets.all(15.0),
+    //           child: Column(
+    //             children: [
+    //               PicosLabel('ICU Sterblichkeit', fontSize: fontSize),
+    //               PicosNumberField(
+    //                 hint: '%',
+    //               ),
+    //               PicosLabel('KH Sterblichkeit', fontSize: fontSize),
+    //               PicosNumberField(
+    //                 hint: '%',
+    //               ),
+    //               PicosLabel('KH Aufenthaltsdauer', fontSize: fontSize),
+    //               PicosNumberField(
+    //                 hint: 'Tage',
+    //               ),
+    //               PicosLabel('ICU Aufenthaltsdauer', fontSize: fontSize),
+    //               PicosNumberField(
+    //                 hint: 'Tage',
+    //               ),
+    //               PicosLabel('Wiederaufnahmen ICU in %',
+    //                   fontSize: fontSize),
+    //               PicosNumberField(
+    //                 hint: '%',
+    //               ),
+    //               PicosLabel('Wiederaufnahmen Krankenhaus (x/Jahr)',
+    //                   fontSize: fontSize),
+    //               PicosNumberField(
+    //                 hint: 'n/Jahr',
+    //               ),
+    //               PicosLabel(
+    //                   'Wiedereingliederungszeit nach Krankheit (Tage bis reuptake work)',
+    //                   fontSize: fontSize),
+    //               PicosNumberField(
+    //                 hint: 'Tage',
+    //               ),
+    //             ],
+    //           ),
+    //         )
+    //       ]),
+    // ),
   }
 
   /// If the patient had 24h mechanical ventilation.
