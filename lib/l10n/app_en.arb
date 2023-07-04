@@ -1047,27 +1047,27 @@
   "@preLast": {
     "description": "Pre-Last"
   },
-  "leukocyte": "Leukocyte",
-  "@leukocyte": {
-    "description": "Leukocyte"
+  "leukocyteCount": "Leukocyte count",
+  "@leukocyteCount": {
+    "description": "Leukocyte count"
   },
-  "lymphocytesCount": "Lymphocytes count",
-  "@lymphocytesCount": {
-    "description": "Lymphocytes count"
+  "lymphocyteCount": "Lymphocyte count",
+  "@lymphocyteCount": {
+    "description": "Lymphocyte count"
   },
-  "lymphocytesPercentage": "Lymphocytes percentage",
-  "@lymphocytesPercentage": {
-    "description": "Lymphocytes percentage"
+  "lymphocytePercentage": "Lymphocyte percentage",
+  "@lymphocytePercentage": {
+    "description": "Lymphocyte percentage"
   },
-  "thrombocytes": "Thrombocytes",
-  "@thrombocytes": {
-    "description": "Thrombocytes"
+  "plateletCount": "Platelet count",
+  "@plateletCount": {
+    "description": "Platelet count"
   },
-  "cReactiveProteinLevel": "C-reactive protein level",
+  "cReactiveProteinLevel": "C-Reactive protein level",
   "@cReactiveProteinLevel": {
-    "description": "C-reactive protein level"
+    "description": "C-Reactive protein level"
   },
-  "pct": "Procalcitonin (PCT) level",
+  "procalcitoninLevel": "Procalcitonin (PCT) level",
   "@pct": {
     "description": "Procalcitonin (PCT) level"
   },
@@ -1083,11 +1083,11 @@
   "@creatinine": {
     "description": "Creatinine"
   },
-  "hfmBNP": "Heart failure marker BNP",
+  "heartFailureMarker": "Heart failure marker BNP",
   "@hfmBNP": {
     "description": "Heart failure marker BNP"
   },
-  "hfmNTBNP": "Heart failure marker NT-proBNP",
+  "heartFailureMarkerNTProBNP": "Heart failure marker NT-proBNP",
   "@hfmNTBNP": {
     "description": "Heart failure marker NT-proBNP"
   },
@@ -1107,12 +1107,12 @@
   "@albumin": {
     "description": "Albumin"
   },
-  "got": "Glutamat-Oxalacetat-Transaminase (GOT/ASAT)",
-  "@got": {
+  "gotASAT": "Glutamat-Oxalacetat-Transaminase (GOT/ASAT)",
+  "@gotASAT": {
     "description": "Glutamat-Oxalacetat-Transaminase (GOT/ASAT)"
   },
-  "gpt": "Glutamat-Pyruvat-Transaminase (GPT/ALAT)",
-  "@gpt": {
+  "gptALAT": "Glutamat-Pyruvat-Transaminase (GPT/ALAT)",
+  "@gptALAT": {
     "description": "Glutamat-Pyruvat-Transaminase (GPT/ALAT)"
   },
   "troponin": "Troponin",
@@ -1123,8 +1123,8 @@
   "@creatineKinase": {
     "description": "Creatine kinase"
   },
-  "mim": "Myocardial infarction marker CK-MB",
-  "@mim": {
+  "myocardialInfarctionMarkerCKMB": "Myocardial infarction marker CK-MB",
+  "@myocardialInfarctionMarkerCKMB": {
     "description": "Myocardial infarction marker CK-MB"
   },
   "lactateDehydrogenaseLevel": "Lactate dehydrogenase level",
@@ -1143,12 +1143,12 @@
   "@dDimer": {
     "description": "D-dimere"
   },
-  "inr": "International Normalized Ratio (INR)",
-  "@inr": {
+  "internationalNormalizedRatio": "International Normalized Ratio (INR)",
+  "@internationalNormalizedRatio": {
     "description": "International Normalized Ratio (INR)"
   },
-  "ptt": "Partial thromboplastin time",
-  "@ptt": {
+  "partialThromboplastinTime": "Partial thromboplastin time",
+  "@partialThromboplastinTime": {
     "description": "Partial thromboplastin time"
   }
 }

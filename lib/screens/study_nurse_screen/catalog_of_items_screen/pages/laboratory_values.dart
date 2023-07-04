@@ -26,78 +26,78 @@ import '../widgets/catalog_of_items_label.dart';
 class LaboratoryValues extends StatelessWidget {
   /// Creates VitalData.
   const LaboratoryValues({
-    required this.leukocyteCallback,
-    required this.lymphocytesCountCallback,
-    required this.lymphocytesPercentageCallback,
-    required this.thrombocytesCallback,
+    required this.leukocyteCountCallback,
+    required this.lymphocyteCountCallback,
+    required this.lymphocytePercentageCallback,
+    required this.plateletCountCallback,
     required this.cReactiveProteinLevelCallback,
-    required this.pctCallback,
+    required this.procalcitoninLevelCallback,
     required this.interleukinCallback,
     required this.bloodUreaNitrogenCallback,
     required this.creatinineCallback,
-    required this.hfmBNPCallback,
-    required this.hfmNTBNPCallback,
+    required this.heartFailureMarkerCallback,
+    required this.heartFailureMarkerNTProBNPCallback,
     required this.bilirubinTotalCallback,
     required this.hemoglobinCallback,
     required this.hematocritCallback,
     required this.albuminCallback,
-    required this.gotCallback,
-    required this.gptCallback,
+    required this.gotASATCallback,
+    required this.gptALATCallback,
     required this.troponinCallback,
     required this.creatineKinaseCallback,
-    required this.mimCallback,
+    required this.myocardialInfarctionMarkerCKMBCallback,
     required this.lactateDehydrogenaseLevelCallback,
     required this.amylaseLevelCallback,
     required this.lipaseLevelCallback,
     required this.dDimerCallback,
-    required this.inrCallback,
-    required this.pttCallback,
+    required this.internationalNormalizedRatioCallback,
+    required this.partialThromboplastinTimeCallback,
     Key? key,
-    this.initialLeukocyte,
-    this.initialLymphocytesCount,
-    this.initialLymphocytesPercentage,
-    this.initialThrombocytes,
+    this.initialLeukocyteCount,
+    this.initialLymphocyteCount,
+    this.initialLymphocytePercentage,
+    this.initialPlateletCount,
     this.initialcReactiveProteinLevel,
-    this.initialPct,
+    this.initialProcalcitoninLevel,
     this.initialInterleukin,
     this.initialBloodUreaNitrogen,
     this.initialCreatinine,
-    this.initialHfmBNP,
-    this.initialHfmNTBNP,
+    this.initialHeartFailureMarker,
+    this.initialHeartFailureMarkerNTProBNP,
     this.initialBilirubinTotal,
     this.initialHemoglobin,
     this.initialHematocrit,
     this.initialAlbumin,
-    this.initialGot,
-    this.initialGpt,
+    this.initialGOTASAT,
+    this.initialGPTALAT,
     this.initialTroponin,
     this.initialCreatineKinase,
-    this.initialMim,
+    this.initialMyocardialInfarctionMarkerCKMB,
     this.initialLactateDehydrogenaseLevel,
     this.initialAmylaseLevel,
     this.initialLipaseLevel,
     this.initialDDimer,
-    this.initialInr,
-    this.initialPtt,
+    this.initialInternationalNormalizedRatio,
+    this.initialPartialThromboplastinTime,
   }) : super(key: key);
 
   /// Leukocyte or white blood cells count callback.
-  final void Function(double? value) leukocyteCallback;
+  final void Function(double? value) leukocyteCountCallback;
 
   /// Lymphocytes count callback.
-  final void Function(double? value) lymphocytesCountCallback;
+  final void Function(double? value) lymphocyteCountCallback;
 
   /// Lymphocytes percentage callback.
-  final void Function(double? value) lymphocytesPercentageCallback;
+  final void Function(double? value) lymphocytePercentageCallback;
 
   /// Thrombocytes or platelets count callback.
-  final void Function(double? value) thrombocytesCallback;
+  final void Function(double? value) plateletCountCallback;
 
   /// C-reactive protein level callback.
   final void Function(double? value) cReactiveProteinLevelCallback;
 
   /// Procalcitonin (PCT) level callback.
-  final void Function(double? value) pctCallback;
+  final void Function(double? value) procalcitoninLevelCallback;
 
   /// Interleukin (IL-6) callback.
   final void Function(double? value) interleukinCallback;
@@ -109,10 +109,10 @@ class LaboratoryValues extends StatelessWidget {
   final void Function(double? value) creatinineCallback;
 
   /// Heart failure marker BNP callback.
-  final void Function(double? value) hfmBNPCallback;
+  final void Function(double? value) heartFailureMarkerCallback;
 
   /// Heart failure marker NT-proBNP callback.
-  final void Function(double? value) hfmNTBNPCallback;
+  final void Function(double? value) heartFailureMarkerNTProBNPCallback;
 
   /// Bilirubin total callback.
   final void Function(double? value) bilirubinTotalCallback;
@@ -127,10 +127,10 @@ class LaboratoryValues extends StatelessWidget {
   final void Function(double? value) albuminCallback;
 
   /// Glutamat-Oxalacetat-Transaminase (GOT/ASAT) callback.
-  final void Function(double? value) gotCallback;
+  final void Function(double? value) gotASATCallback;
 
   /// Glutamat-Pyruvat-Transaminase (GPT/ALAT) callback.
-  final void Function(double? value) gptCallback;
+  final void Function(double? value) gptALATCallback;
 
   /// Troponin callback.
   final void Function(double? value) troponinCallback;
@@ -139,7 +139,7 @@ class LaboratoryValues extends StatelessWidget {
   final void Function(double? value) creatineKinaseCallback;
 
   /// Myocardial infarction marker CK-MB callback.
-  final void Function(double? value) mimCallback;
+  final void Function(double? value) myocardialInfarctionMarkerCKMBCallback;
 
   /// Lactate dehydrogenase level callback.
   final void Function(double? value) lactateDehydrogenaseLevelCallback;
@@ -154,94 +154,91 @@ class LaboratoryValues extends StatelessWidget {
   final void Function(double? value) dDimerCallback;
 
   /// International Normalized Ratio (INR) callback.
-  final void Function(double? value) inrCallback;
+  final void Function(double? value) internationalNormalizedRatioCallback;
 
   /// Partial thromboplastin time callback.
-  final void Function(double? value) pttCallback;
+  final void Function(double? value) partialThromboplastinTimeCallback;
 
-  ///
-  final double? initialLeukocyte;
+  /// Starting value for leukocyte count.
+  final double? initialLeukocyteCount;
 
-  ///
-  final double? initialLymphocytesCount;
+  /// Starting value for lymphocyte count.
+  final double? initialLymphocyteCount;
 
-  ///
-  final double? initialLymphocytesPercentage;
+  /// Starting value for Lymphocyte percentage.
+  final double? initialLymphocytePercentage;
 
-  ///
-  final double? initialThrombocytes;
+  /// Starting value for platelet count.
+  final double? initialPlateletCount;
 
-  ///
+  /// Starting value for C-Reactive protein level.
   final double? initialcReactiveProteinLevel;
 
-  ///
-  final double? initialPct;
+  /// Starting value for procalcitonin (PCT) level.
+  final double? initialProcalcitoninLevel;
 
-  ///
+  /// Starting value for interleukin (IL-6).
   final double? initialInterleukin;
 
-  ///
+  /// Starting value for blood urea nitrogen.
   final double? initialBloodUreaNitrogen;
 
-  ///
+  /// Starting value for creatinine.
   final double? initialCreatinine;
 
-  ///
-  final double? initialHfmBNP;
+  /// Starting value for heart failure marker BNP.
+  final double? initialHeartFailureMarker;
 
-  ///
-  final double? initialHfmNTBNP;
+  /// Starting value for heart failure marker NT-proBNP.
+  final double? initialHeartFailureMarkerNTProBNP;
 
-  ///
+  /// Starting value for bilirubin total.
   final double? initialBilirubinTotal;
 
-  ///
+  /// Starting value for hemoglobin.
   final double? initialHemoglobin;
 
-  ///
+  /// Starting value for hematocrit.
   final double? initialHematocrit;
 
-  ///
+  /// Starting value for albumin.
   final double? initialAlbumin;
 
-  ///
-  final double? initialGot;
+  /// Starting value for Glutamat-Oxalacetat-Transaminase (GOT/ASAT).
+  final double? initialGOTASAT;
 
-  ///
-  final double? initialGpt;
+  /// Starting value for Glutamat-Pyruvat-Transaminase (GPT/ALAT).
+  final double? initialGPTALAT;
 
-  ///
+  /// Starting value for troponin.
   final double? initialTroponin;
 
-  ///
+  /// Starting value for creatine kinase.
   final double? initialCreatineKinase;
 
-  ///
-  final double? initialMim;
+  /// Starting value for myocardial infarction marker CK-MB.
+  final double? initialMyocardialInfarctionMarkerCKMB;
 
-  ///
+  /// Starting value for lactate dehydrogenase level.
   final double? initialLactateDehydrogenaseLevel;
 
-  ///
+  /// Starting value for amylase level.
   final double? initialAmylaseLevel;
 
-  ///
+  /// Starting value for lipase level.
   final double? initialLipaseLevel;
 
-  ///
+  /// Starting value for D-dimere.
   final double? initialDDimer;
 
-  ///
-  final double? initialInr;
+  /// Starting value for international Normalized Ratio (INR).
+  final double? initialInternationalNormalizedRatio;
 
-  ///
-  final double? initialPtt;
+  /// Starting value for partial thromboplastin time.
+  final double? initialPartialThromboplastinTime;
 
   @override
   Widget build(BuildContext context) {
-    const String uL = '10*3/uL';
-    const String nmolL = 'nmol/L';
-
     return CatalogOfItemsPage(
       title: AppLocalizations.of(context)!.icuDiagnosis,
       padding: EdgeInsets.zero,
@@ -250,63 +247,58 @@ class LaboratoryValues extends StatelessWidget {
           padding: const EdgeInsets.all(15.0),
           child: Column(
             children: <Widget>[
-              CatalogOfItemsLabel(AppLocalizations.of(context)!.leukocyte),
+              CatalogOfItemsLabel(AppLocalizations.of(context)!.leukocyteCount),
               PicosNumberField(
-                hint: uL,
-                initialValue: initialLeukocyte.toString(),
+                initialValue: initialLeukocyteCount.toString(),
                 onChanged: (String value) {
-                  leukocyteCallback(double.tryParse(value));
+                  leukocyteCountCallback(double.tryParse(value));
                 },
               ),
               CatalogOfItemsLabel(
-                AppLocalizations.of(context)!.lymphocytesCount,
+                AppLocalizations.of(context)!.lymphocyteCount,
               ),
               PicosNumberField(
-                hint: uL,
-                initialValue: initialLymphocytesCount.toString(),
+                initialValue: initialLymphocyteCount.toString(),
                 onChanged: (String value) {
-                  lymphocytesCountCallback(double.tryParse(value));
+                  lymphocyteCountCallback(double.tryParse(value));
                 },
               ),
               CatalogOfItemsLabel(
-                AppLocalizations.of(context)!.lymphocytesPercentage,
+                AppLocalizations.of(context)!.lymphocytePercentage,
               ),
               PicosNumberField(
-                hint: uL,
-                initialValue: initialLymphocytesPercentage.toString(),
+                initialValue: initialLymphocytePercentage.toString(),
                 onChanged: (String value) {
-                  lymphocytesPercentageCallback(double.tryParse(value));
+                  lymphocytePercentageCallback(double.tryParse(value));
                 },
               ),
-              CatalogOfItemsLabel(AppLocalizations.of(context)!.thrombocytes),
+              CatalogOfItemsLabel(AppLocalizations.of(context)!.plateletCount),
               PicosNumberField(
-                hint: uL,
-                initialValue: initialThrombocytes.toString(),
+                initialValue: initialPlateletCount.toString(),
                 onChanged: (String value) {
-                  thrombocytesCallback(double.tryParse(value));
+                  plateletCountCallback(double.tryParse(value));
                 },
               ),
               CatalogOfItemsLabel(
                 AppLocalizations.of(context)!.cReactiveProteinLevel,
               ),
               PicosNumberField(
-                hint: uL,
                 initialValue: initialcReactiveProteinLevel.toString(),
                 onChanged: (String value) {
                   cReactiveProteinLevelCallback(double.tryParse(value));
                 },
               ),
-              CatalogOfItemsLabel(AppLocalizations.of(context)!.pct),
+              CatalogOfItemsLabel(
+                AppLocalizations.of(context)!.procalcitoninLevel,
+              ),
               PicosNumberField(
-                hint: uL,
-                initialValue: initialPct.toString(),
+                initialValue: initialProcalcitoninLevel.toString(),
                 onChanged: (String value) {
-                  pctCallback(double.tryParse(value));
+                  procalcitoninLevelCallback(double.tryParse(value));
                 },
               ),
               CatalogOfItemsLabel(AppLocalizations.of(context)!.interleukin),
               PicosNumberField(
-                hint: uL,
                 initialValue: initialInterleukin.toString(),
                 onChanged: (String value) {
                   interleukinCallback(double.tryParse(value));
@@ -316,7 +308,6 @@ class LaboratoryValues extends StatelessWidget {
                 AppLocalizations.of(context)!.bloodUreaNitrogen,
               ),
               PicosNumberField(
-                hint: uL,
                 initialValue: initialBloodUreaNitrogen.toString(),
                 onChanged: (String value) {
                   bloodUreaNitrogenCallback(double.tryParse(value));
@@ -324,31 +315,31 @@ class LaboratoryValues extends StatelessWidget {
               ),
               CatalogOfItemsLabel(AppLocalizations.of(context)!.creatinine),
               PicosNumberField(
-                hint: uL,
                 initialValue: initialCreatinine.toString(),
                 onChanged: (String value) {
                   creatinineCallback(double.tryParse(value));
                 },
               ),
-              CatalogOfItemsLabel(AppLocalizations.of(context)!.hfmBNP),
+              CatalogOfItemsLabel(
+                AppLocalizations.of(context)!.heartFailureMarker,
+              ),
               PicosNumberField(
-                hint: uL,
-                initialValue: initialHfmBNP.toString(),
+                initialValue: initialHeartFailureMarker.toString(),
                 onChanged: (String value) {
-                  hfmBNPCallback(double.tryParse(value));
+                  heartFailureMarkerCallback(double.tryParse(value));
                 },
               ),
-              CatalogOfItemsLabel(AppLocalizations.of(context)!.hfmNTBNP),
+              CatalogOfItemsLabel(
+                AppLocalizations.of(context)!.heartFailureMarkerNTProBNP,
+              ),
               PicosNumberField(
-                hint: uL,
-                initialValue: initialHfmNTBNP.toString(),
+                initialValue: initialHeartFailureMarkerNTProBNP.toString(),
                 onChanged: (String value) {
-                  hfmNTBNPCallback(double.tryParse(value));
+                  heartFailureMarkerNTProBNPCallback(double.tryParse(value));
                 },
               ),
               CatalogOfItemsLabel(AppLocalizations.of(context)!.bilirubinTotal),
               PicosNumberField(
-                hint: uL,
                 initialValue: initialBilirubinTotal.toString(),
                 onChanged: (String value) {
                   bilirubinTotalCallback(double.tryParse(value));
@@ -356,7 +347,6 @@ class LaboratoryValues extends StatelessWidget {
               ),
               CatalogOfItemsLabel(AppLocalizations.of(context)!.hemoglobin),
               PicosNumberField(
-                hint: uL,
                 initialValue: initialHemoglobin.toString(),
                 onChanged: (String value) {
                   hemoglobinCallback(double.tryParse(value));
@@ -364,7 +354,6 @@ class LaboratoryValues extends StatelessWidget {
               ),
               CatalogOfItemsLabel(AppLocalizations.of(context)!.hematocrit),
               PicosNumberField(
-                hint: uL,
                 initialValue: initialHematocrit.toString(),
                 onChanged: (String value) {
                   hematocritCallback(double.tryParse(value));
@@ -372,31 +361,27 @@ class LaboratoryValues extends StatelessWidget {
               ),
               CatalogOfItemsLabel(AppLocalizations.of(context)!.albumin),
               PicosNumberField(
-                hint: uL,
                 initialValue: initialAlbumin.toString(),
                 onChanged: (String value) {
                   albuminCallback(double.tryParse(value));
                 },
               ),
-              CatalogOfItemsLabel(AppLocalizations.of(context)!.got),
+              CatalogOfItemsLabel(AppLocalizations.of(context)!.gotASAT),
               PicosNumberField(
-                hint: uL,
-                initialValue: initialGot.toString(),
+                initialValue: initialGOTASAT.toString(),
                 onChanged: (String value) {
-                  gotCallback(double.tryParse(value));
+                  gotASATCallback(double.tryParse(value));
                 },
               ),
-              CatalogOfItemsLabel(AppLocalizations.of(context)!.gpt),
+              CatalogOfItemsLabel(AppLocalizations.of(context)!.gptALAT),
               PicosNumberField(
-                hint: uL,
-                initialValue: initialGpt.toString(),
+                initialValue: initialGPTALAT.toString(),
                 onChanged: (String value) {
-                  gptCallback(double.tryParse(value));
+                  gptALATCallback(double.tryParse(value));
                 },
               ),
               CatalogOfItemsLabel(AppLocalizations.of(context)!.troponin),
               PicosNumberField(
-                hint: uL,
                 initialValue: initialTroponin.toString(),
                 onChanged: (String value) {
                   troponinCallback(double.tryParse(value));
@@ -404,25 +389,26 @@ class LaboratoryValues extends StatelessWidget {
               ),
               CatalogOfItemsLabel(AppLocalizations.of(context)!.creatineKinase),
               PicosNumberField(
-                hint: uL,
                 initialValue: initialCreatineKinase.toString(),
                 onChanged: (String value) {
                   creatineKinaseCallback(double.tryParse(value));
                 },
               ),
-              CatalogOfItemsLabel(AppLocalizations.of(context)!.mim),
+              CatalogOfItemsLabel(
+                AppLocalizations.of(context)!.myocardialInfarctionMarkerCKMB,
+              ),
               PicosNumberField(
-                hint: uL,
-                initialValue: initialMim.toString(),
+                initialValue: initialMyocardialInfarctionMarkerCKMB.toString(),
                 onChanged: (String value) {
-                  mimCallback(double.tryParse(value));
+                  myocardialInfarctionMarkerCKMBCallback(
+                    double.tryParse(value),
+                  );
                 },
               ),
               CatalogOfItemsLabel(
                 AppLocalizations.of(context)!.lactateDehydrogenaseLevel,
               ),
               PicosNumberField(
-                hint: uL,
                 initialValue: initialLactateDehydrogenaseLevel.toString(),
                 onChanged: (String value) {
                   lactateDehydrogenaseLevelCallback(double.tryParse(value));
@@ -430,7 +416,6 @@ class LaboratoryValues extends StatelessWidget {
               ),
               CatalogOfItemsLabel(AppLocalizations.of(context)!.amylaseLevel),
               PicosNumberField(
-                hint: uL,
                 initialValue: initialAmylaseLevel.toString(),
                 onChanged: (String value) {
                   hematocritCallback(double.tryParse(value));
@@ -438,7 +423,6 @@ class LaboratoryValues extends StatelessWidget {
               ),
               CatalogOfItemsLabel(AppLocalizations.of(context)!.lipaseLevel),
               PicosNumberField(
-                hint: uL,
                 initialValue: initialLipaseLevel.toString(),
                 onChanged: (String value) {
                   lipaseLevelCallback(double.tryParse(value));
@@ -446,26 +430,27 @@ class LaboratoryValues extends StatelessWidget {
               ),
               CatalogOfItemsLabel(AppLocalizations.of(context)!.dDimer),
               PicosNumberField(
-                hint: uL,
                 initialValue: initialDDimer.toString(),
                 onChanged: (String value) {
                   dDimerCallback(double.tryParse(value));
                 },
               ),
-              CatalogOfItemsLabel(AppLocalizations.of(context)!.inr),
+              CatalogOfItemsLabel(
+                AppLocalizations.of(context)!.internationalNormalizedRatio,
+              ),
               PicosNumberField(
-                hint: uL,
-                initialValue: initialInr.toString(),
+                initialValue: initialInternationalNormalizedRatio.toString(),
                 onChanged: (String value) {
-                  inrCallback(double.tryParse(value));
+                  internationalNormalizedRatioCallback(double.tryParse(value));
                 },
               ),
-              CatalogOfItemsLabel(AppLocalizations.of(context)!.ptt),
+              CatalogOfItemsLabel(
+                AppLocalizations.of(context)!.partialThromboplastinTime,
+              ),
               PicosNumberField(
-                hint: uL,
-                initialValue: initialPtt.toString(),
+                initialValue: initialPartialThromboplastinTime.toString(),
                 onChanged: (String value) {
-                  pttCallback(double.tryParse(value));
+                  partialThromboplastinTimeCallback(double.tryParse(value));
                 },
               ),
             ],
