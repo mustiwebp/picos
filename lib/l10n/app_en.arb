@@ -1047,6 +1047,10 @@
   "@preLast": {
     "description": "Pre-Last"
   },
+  "laboratoryValues": "Laboratory values (last values before discharge)",
+  "@laboratoryValues": {
+    "description": "Laboratory values (last values before discharge)"
+  },
   "leukocyteCount": "Leukocyte count",
   "@leukocyteCount": {
     "description": "Leukocyte count"
