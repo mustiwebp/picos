@@ -308,5 +308,8 @@
     "arterialPH": "pH arteriell",
     "arterialLactate": "Laktat arteriell",
     "arterialBicarbonate": "Bicarbonat arteriell",
-    "arterialBaseExcess": "BE arteriell"
+    "arterialBaseExcess": "BE arteriell",
+    "sa02" : "arterielle Sauerstoffsättigung",
+    "svO2": "zentralvenöse Sauerstoffsättigung",
+    "af": "Atemfrequenz"
 }
