@@ -21,32 +21,32 @@ import 'package:picos/models/abstract_database_object.dart';
 class Laborparameter extends AbstractDatabaseObject {
   /// Creates a Laborparameter object.
   const Laborparameter({
-    required this.leukocyteCount,
-    required this.lymphocyteCount,
-    required this.lymphocytePercentage,
-    required this.plateletCount,
-    required this.cReactiveProteinLevel,
-    required this.procalcitoninLevel,
-    required this.interleukin,
-    required this.bloodUreaNitrogen,
-    required this.creatinine,
-    required this.heartFailureMarker,
-    required this.heartFailureMarkerNTProBNP,
-    required this.bilirubinTotal,
-    required this.hemoglobin,
-    required this.hematocrit,
-    required this.albumin,
-    required this.gotASAT,
-    required this.gptALAT,
-    required this.troponin,
-    required this.creatineKinase,
-    required this.myocardialInfarctionMarkerCKMB,
-    required this.lactateDehydrogenaseLevel,
-    required this.amylaseLevel,
-    required this.lipaseLevel,
-    required this.dDimer,
-    required this.internationalNormalizedRatio,
-    required this.partialThromboplastinTime,
+    this.leukocyteCount,
+    this.lymphocyteCount,
+    this.lymphocytePercentage,
+    this.plateletCount,
+    this.cReactiveProteinLevel,
+    this.procalcitoninLevel,
+    this.interleukin,
+    this.bloodUreaNitrogen,
+    this.creatinine,
+    this.heartFailureMarker,
+    this.heartFailureMarkerNTProBNP,
+    this.bilirubinTotal,
+    this.hemoglobin,
+    this.hematocrit,
+    this.albumin,
+    this.gotASAT,
+    this.gptALAT,
+    this.troponin,
+    this.creatineKinase,
+    this.myocardialInfarctionMarkerCKMB,
+    this.lactateDehydrogenaseLevel,
+    this.amylaseLevel,
+    this.lipaseLevel,
+    this.dDimer,
+    this.internationalNormalizedRatio,
+    this.partialThromboplastinTime,
     String? objectId,
     DateTime? createdAt,
     DateTime? updatedAt,
@@ -56,82 +56,82 @@ class Laborparameter extends AbstractDatabaseObject {
   static const String databaseTable = 'Laborparameter';
 
   /// leukocyte count.
-  final double leukocyteCount;
+  final double? leukocyteCount;
 
   /// lymphocyte count.
-  final double lymphocyteCount;
+  final double? lymphocyteCount;
 
   /// Lymphocyte percentage.
-  final double lymphocytePercentage;
+  final double? lymphocytePercentage;
 
   /// platelet count.
-  final double plateletCount;
+  final double? plateletCount;
 
   /// C-Reactive protein level.
-  final double cReactiveProteinLevel;
+  final double? cReactiveProteinLevel;
 
   /// procalcitonin (PCT) level.
-  final double procalcitoninLevel;
+  final double? procalcitoninLevel;
 
   /// interleukin (IL-6).
-  final double interleukin;
+  final double? interleukin;
 
   /// blood urea nitrogen.
-  final double bloodUreaNitrogen;
+  final double? bloodUreaNitrogen;
 
   /// creatinine.
-  final double creatinine;
+  final double? creatinine;
 
   /// heart failure marker BNP.
-  final double heartFailureMarker;
+  final double? heartFailureMarker;
 
   /// heart failure marker NT-proBNP.
-  final double heartFailureMarkerNTProBNP;
+  final double? heartFailureMarkerNTProBNP;
 
   /// bilirubin total.
-  final double bilirubinTotal;
+  final double? bilirubinTotal;
 
   /// hemoglobin.
-  final double hemoglobin;
+  final double? hemoglobin;
 
   /// hematocrit.
-  final double hematocrit;
+  final double? hematocrit;
 
   /// albumin.
-  final double albumin;
+  final double? albumin;
 
   /// Glutamat-Oxalacetat-Transaminase (GOT/ASAT).
-  final double gotASAT;
+  final double? gotASAT;
 
   /// Glutamat-Pyruvat-Transaminase (GPT/ALAT).
-  final double gptALAT;
+  final double? gptALAT;
 
   /// troponin.
-  final double troponin;
+  final double? troponin;
 
   /// creatine kinase.
-  final double creatineKinase;
+  final double? creatineKinase;
 
   /// myocardial infarction marker CK-MB.
-  final double myocardialInfarctionMarkerCKMB;
+  final double? myocardialInfarctionMarkerCKMB;
 
   /// lactate dehydrogenase level.
-  final double lactateDehydrogenaseLevel;
+  final double? lactateDehydrogenaseLevel;
 
   /// amylase level.
-  final double amylaseLevel;
+  final double? amylaseLevel;
 
   /// lipase level.
-  final double lipaseLevel;
+  final double? lipaseLevel;
 
   /// D-dimere.
-  final double dDimer;
+  final double? dDimer;
 
   /// international Normalized Ratio (INR).
-  final double internationalNormalizedRatio;
+  final double? internationalNormalizedRatio;
 
   /// partial thromboplastin time.
-  final double partialThromboplastinTime;
+  final double? partialThromboplastinTime;
 
   @override
   get table {
@@ -211,32 +211,32 @@ class Laborparameter extends AbstractDatabaseObject {
 
   @override
   List<Object> get props => <Object>[
-        leukocyteCount,
-        lymphocyteCount,
-        lymphocytePercentage,
-        plateletCount,
-        cReactiveProteinLevel,
-        procalcitoninLevel,
-        interleukin,
-        bloodUreaNitrogen,
-        creatinine,
-        heartFailureMarker,
-        heartFailureMarkerNTProBNP,
-        bilirubinTotal,
-        hemoglobin,
-        hematocrit,
-        albumin,
-        gotASAT,
-        gptALAT,
-        troponin,
-        creatineKinase,
-        myocardialInfarctionMarkerCKMB,
-        lactateDehydrogenaseLevel,
-        amylaseLevel,
-        lipaseLevel,
-        dDimer,
-        internationalNormalizedRatio,
-        partialThromboplastinTime,
+        leukocyteCount!,
+        lymphocyteCount!,
+        lymphocytePercentage!,
+        plateletCount!,
+        cReactiveProteinLevel!,
+        procalcitoninLevel!,
+        interleukin!,
+        bloodUreaNitrogen!,
+        creatinine!,
+        heartFailureMarker!,
+        heartFailureMarkerNTProBNP!,
+        bilirubinTotal!,
+        hemoglobin!,
+        hematocrit!,
+        albumin!,
+        gotASAT!,
+        gptALAT!,
+        troponin!,
+        creatineKinase!,
+        myocardialInfarctionMarkerCKMB!,
+        lactateDehydrogenaseLevel!,
+        amylaseLevel!,
+        lipaseLevel!,
+        dDimer!,
+        internationalNormalizedRatio!,
+        partialThromboplastinTime!,
       ];
 
   @override
