@@ -351,8 +351,42 @@ class BackendCatalogOfItemsApi extends BackendObjectsApi {
           ),
         );
       }
-      //TODO: loops for responseMedicaments and responseMovementData
 
+      for (dynamic element in responseMedicaments) {
+        medicamentsResults.add(
+          Medicaments(
+            plateletAggregation: element['Antiarrythmika'] ?? '',
+            noak: element['Antiinfektiva'] ?? '',
+            thrombosisProphylaxis: element['Antihypertensiva' ?? ''],
+            antihypertensives: element['Antidiabetika'] ?? '',
+            antiarrhythmics: element['Steroide'] ?? '',
+            antidiabetics: element['NOAK'] ?? '',
+            antiInfectives: element['Thrombozytenaggregation' ?? ''],
+            steroids: element['Thromboseprophylaxe'] ?? '',
+            inhalatives: element['Inhalativa'] ?? '',
+            analgesics: element['Analgetika'] ?? '',
+            objectId: element['objectId'] ?? '',
+            createdAt: DateTime.parse(element['createdAt']),
+            updatedAt: DateTime.parse(element['updatedAt']),
+          ),
+        );
+      }
+
+      for (dynamic element in responseMovementData) {
+        movementDataResults.add(
+          PatientData(
+            bodyHeight: element['BodyHeight']['estimateNumber'].toDouble(),
+            patientID: element['ID'],
+            caseNumber: element['CaseNumber'],
+            instKey: element['inst_key'],
+            objectId: element['objectId'],
+            patientObjectId: element['Patient']['objectId'],
+            doctorObjectId: element['Doctor']['objectId'],
+            createdAt: DateTime.parse(element['createdAt']),
+            updatedAt: DateTime.parse(element['updatedAt']),
+          ),
+        );
+      }
       /*
       for (Patient patientObject in patientResults) {
         String? patientObjectId = patientObject.objectId;
