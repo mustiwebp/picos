@@ -438,6 +438,8 @@ class BackendCatalogOfItemsApi extends BackendObjectsApi {
             inhalatives: element['Inhalativa'] ?? '',
             analgesics: element['Analgetika'] ?? '',
             objectId: element['objectId'] ?? '',
+            patientObjectId: element['Patient']['objectId'],
+            doctorObjectId: element['Doctor']['objectId'],
             createdAt: DateTime.parse(element['createdAt']),
             updatedAt: DateTime.parse(element['updatedAt']),
           ),
