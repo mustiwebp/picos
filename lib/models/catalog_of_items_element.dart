@@ -25,7 +25,6 @@ import 'package:picos/models/respiratory_parameters_object.dart';
 import 'package:picos/models/vital_signs.dart';
 import 'package:picos/models/vital_signs_object.dart';
 
-
 import 'blood_gas_analysis.dart';
 import 'blood_gas_analysis_object.dart';
 
