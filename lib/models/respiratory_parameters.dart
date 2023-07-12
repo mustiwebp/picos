@@ -74,10 +74,8 @@ class RespiratoryParameters extends AbstractDatabaseObject {
 
   @override
   List<Object> get props => <Object>[
-        doctorObjectId,
         value1,
         value2,
-        patientObjectId,
       ];
 
   @override
