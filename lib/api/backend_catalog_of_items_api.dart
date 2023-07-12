@@ -427,14 +427,14 @@ class BackendCatalogOfItemsApi extends BackendObjectsApi {
       for (dynamic element in responseMedicaments) {
         medicamentsResults.add(
           Medicaments(
-            plateletAggregation: element['Antiarrythmika'] ?? '',
-            noak: element['Antiinfektiva'] ?? '',
-            thrombosisProphylaxis: element['Antihypertensiva'],
-            antihypertensives: element['Antidiabetika'] ?? '',
-            antiarrhythmics: element['Steroide'] ?? '',
-            antidiabetics: element['NOAK'] ?? '',
-            antiInfectives: element['Thrombozytenaggregation'],
-            steroids: element['Thromboseprophylaxe'] ?? '',
+            plateletAggregation: element['Thrombozytenaggregation'] ?? '',
+            noak: element['NOAK'] ?? '',
+            thrombosisProphylaxis: element['Thromboseprophylaxe'],
+            antihypertensives: element['Antihypertensiva'] ?? '',
+            antiarrhythmics: element['Antiarrythmika'] ?? '',
+            antidiabetics: element['Antidiabetika'] ?? '',
+            antiInfectives: element['Antiinfektiva'],
+            steroids: element['Steroide'] ?? '',
             inhalatives: element['Inhalativa'] ?? '',
             analgesics: element['Analgetika'] ?? '',
             objectId: element['objectId'] ?? '',
