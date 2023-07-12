@@ -28,7 +28,6 @@ import 'package:picos/models/patient_data.dart';
 import 'package:collection/collection.dart';
 import 'package:picos/models/respiratory_parameters_object.dart';
 import 'package:picos/models/vital_signs_object.dart';
-import 'package:picos/screens/study_nurse_screen/catalog_of_items_screen/pages/movement_data.dart';
 import 'package:picos/util/backend.dart';
 
 import 'package:picos/models/blood_gas_analysis.dart';
@@ -430,11 +429,11 @@ class BackendCatalogOfItemsApi extends BackendObjectsApi {
           Medicaments(
             plateletAggregation: element['Antiarrythmika'] ?? '',
             noak: element['Antiinfektiva'] ?? '',
-            thrombosisProphylaxis: element['Antihypertensiva' ?? ''],
+            thrombosisProphylaxis: element['Antihypertensiva'],
             antihypertensives: element['Antidiabetika'] ?? '',
             antiarrhythmics: element['Steroide'] ?? '',
             antidiabetics: element['NOAK'] ?? '',
-            antiInfectives: element['Thrombozytenaggregation' ?? ''],
+            antiInfectives: element['Thrombozytenaggregation'],
             steroids: element['Thromboseprophylaxe'] ?? '',
             inhalatives: element['Inhalativa'] ?? '',
             analgesics: element['Analgetika'] ?? '',
