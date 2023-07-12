@@ -25,7 +25,8 @@ import 'package:picos/models/respiratory_parameters_object.dart';
 import 'package:picos/models/vital_signs.dart';
 import 'package:picos/models/vital_signs_object.dart';
 
-import '../screens/study_nurse_screen/catalog_of_items_screen/pages/blood_gas_analysis.dart';
+
+import 'blood_gas_analysis.dart';
 import 'blood_gas_analysis_object.dart';
 
 /// Class with Catalog of Items information.
@@ -131,10 +132,13 @@ class CatalogOfItemsElement extends AbstractDatabaseObject {
         icuDiagnosis,
         vitalSignsObject1,
         vitalSignsObject2,
+        vitalSigns,
         respiratoryParametersObject1,
         respiratoryParametersObject2,
+        respiratoryParameters,
         bloodGasAnalysisObject1,
         bloodGasAnalysisObject2,
+        bloodGasAnalysis,
         laborParameters,
         medicaments,
         movementData

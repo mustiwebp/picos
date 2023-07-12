@@ -30,9 +30,9 @@ import 'package:picos/models/respiratory_parameters_object.dart';
 import 'package:picos/models/vital_signs_object.dart';
 import 'package:picos/util/backend.dart';
 
-import '../models/blood_gas_analysis.dart';
-import '../models/respiratory_parameters.dart';
-import '../models/vital_signs.dart';
+import 'package:picos/models/blood_gas_analysis.dart';
+import 'package:picos/models/respiratory_parameters.dart';
+import 'package:picos/models/vital_signs.dart';
 
 /// API for calling the corresponding tables for the Catalog of Items.
 class BackendCatalogOfItemsApi extends BackendObjectsApi {
@@ -82,6 +82,19 @@ class BackendCatalogOfItemsApi extends BackendObjectsApi {
                 object.vitalSignsObject1.updatedAt,
       );
 
+      /// VitalSigns
+      dynamic responseVitalSigns = await Backend.saveObject(
+        object.vitalSigns,
+      );
+
+      VitalSigns vitalSigns = object.vitalSigns.copyWith(
+        objectId: responseVitalSigns['objectId'],
+        createdAt: DateTime.tryParse(responseVitalSigns['createdAt'] ?? '') ??
+            object.vitalSigns.createdAt,
+        updatedAt: DateTime.tryParse(responseVitalSigns['updatedAt'] ?? '') ??
+            object.vitalSigns.updatedAt,
+      );
+
       /// Respiratory parameters value 1
       dynamic responseRespiratoryParametersObject1 = await Backend.saveObject(
         object.respiratoryParametersObject1,
@@ -118,6 +131,24 @@ class BackendCatalogOfItemsApi extends BackendObjectsApi {
             object.respiratoryParametersObject2.updatedAt,
       );
 
+      /// Respiratory parameters
+      dynamic responseRespiratoryParameters = await Backend.saveObject(
+        object.respiratoryParameters,
+      );
+
+      RespiratoryParameters respiratoryParameters =
+          object.respiratoryParameters.copyWith(
+        objectId: responseRespiratoryParameters['objectId'],
+        createdAt: DateTime.tryParse(
+              responseRespiratoryParameters['createdAt'] ?? '',
+            ) ??
+            object.respiratoryParameters.createdAt,
+        updatedAt: DateTime.tryParse(
+              responseRespiratoryParameters['updatedAt'] ?? '',
+            ) ??
+            object.respiratoryParameters.updatedAt,
+      );
+
       /// Blood gas analysis value 1
       dynamic responseBloodGasAnalysisObject1 = await Backend.saveObject(
         object.bloodGasAnalysisObject1,
@@ -152,6 +183,23 @@ class BackendCatalogOfItemsApi extends BackendObjectsApi {
               responseBloodGasAnalysisObject2['updatedAt'] ?? '',
             ) ??
             object.bloodGasAnalysisObject2.updatedAt,
+      );
+
+      /// Blood gas analysis
+      dynamic responseBloodGasAnalysis = await Backend.saveObject(
+        object.bloodGasAnalysis,
+      );
+
+      BloodGasAnalysis bloodGasAnalysis = object.bloodGasAnalysis.copyWith(
+        objectId: responseBloodGasAnalysis['objectId'],
+        createdAt: DateTime.tryParse(
+              responseBloodGasAnalysis['createdAt'] ?? '',
+            ) ??
+            object.bloodGasAnalysis.createdAt,
+        updatedAt: DateTime.tryParse(
+              responseBloodGasAnalysis['updatedAt'] ?? '',
+            ) ??
+            object.bloodGasAnalysis.updatedAt,
       );
 
       /// Labor parameters
@@ -199,10 +247,13 @@ class BackendCatalogOfItemsApi extends BackendObjectsApi {
         icuDiagnosis: icuDiagnosis,
         vitalSignsObject1: vitalSignsObject1,
         vitalSignsObject2: vitalSignsObject2,
+        vitalSigns: vitalSigns,
         respiratoryParametersObject1: respiratoryParametersObject1,
         respiratoryParametersObject2: respiratoryParametersObject2,
+        respiratoryParameters: respiratoryParameters,
         bloodGasAnalysisObject1: bloodGasAnalysisObject1,
         bloodGasAnalysisObject2: bloodGasAnalysisObject2,
+        bloodGasAnalysis: bloodGasAnalysis,
         laborParameters: laborParameters,
         medicaments: medicaments,
         movementData: movementData,
