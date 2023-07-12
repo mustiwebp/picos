@@ -60,11 +60,11 @@ class BackendCatalogOfItemsApi extends BackendObjectsApi {
       VitalSignsObject vitalSignsObject1 = object.vitalSignsObject1.copyWith(
         objectId: responseVitalSignsObject1['objectId'],
         createdAt:
-        DateTime.tryParse(responseVitalSignsObject1['createdAt'] ?? '') ??
-            object.vitalSignsObject1.createdAt,
+            DateTime.tryParse(responseVitalSignsObject1['createdAt'] ?? '') ??
+                object.vitalSignsObject1.createdAt,
         updatedAt:
-        DateTime.tryParse(responseVitalSignsObject1['updatedAt'] ?? '') ??
-            object.vitalSignsObject1.updatedAt,
+            DateTime.tryParse(responseVitalSignsObject1['updatedAt'] ?? '') ??
+                object.vitalSignsObject1.updatedAt,
       );
 
       /// VitalSigns value 2
@@ -75,11 +75,11 @@ class BackendCatalogOfItemsApi extends BackendObjectsApi {
       VitalSignsObject vitalSignsObject2 = object.vitalSignsObject1.copyWith(
         objectId: responseVitalSignsObject2['objectId'],
         createdAt:
-        DateTime.tryParse(responseVitalSignsObject2['createdAt'] ?? '') ??
-            object.vitalSignsObject1.createdAt,
+            DateTime.tryParse(responseVitalSignsObject2['createdAt'] ?? '') ??
+                object.vitalSignsObject1.createdAt,
         updatedAt:
-        DateTime.tryParse(responseVitalSignsObject2['updatedAt'] ?? '') ??
-            object.vitalSignsObject1.updatedAt,
+            DateTime.tryParse(responseVitalSignsObject2['updatedAt'] ?? '') ??
+                object.vitalSignsObject1.updatedAt,
       );
 
       /// VitalSigns
@@ -101,15 +101,15 @@ class BackendCatalogOfItemsApi extends BackendObjectsApi {
       );
 
       RespiratoryParametersObject respiratoryParametersObject1 =
-      object.respiratoryParametersObject1.copyWith(
+          object.respiratoryParametersObject1.copyWith(
         objectId: responseRespiratoryParametersObject1['objectId'],
         createdAt: DateTime.tryParse(
-          responseRespiratoryParametersObject1['createdAt'] ?? '',
-        ) ??
+              responseRespiratoryParametersObject1['createdAt'] ?? '',
+            ) ??
             object.respiratoryParametersObject1.createdAt,
         updatedAt: DateTime.tryParse(
-          responseRespiratoryParametersObject1['updatedAt'] ?? '',
-        ) ??
+              responseRespiratoryParametersObject1['updatedAt'] ?? '',
+            ) ??
             object.respiratoryParametersObject1.updatedAt,
       );
 
@@ -119,15 +119,15 @@ class BackendCatalogOfItemsApi extends BackendObjectsApi {
       );
 
       RespiratoryParametersObject respiratoryParametersObject2 =
-      object.respiratoryParametersObject2.copyWith(
+          object.respiratoryParametersObject2.copyWith(
         objectId: responseRespiratoryParametersObject2['objectId'],
         createdAt: DateTime.tryParse(
-          responseRespiratoryParametersObject2['createdAt'] ?? '',
-        ) ??
+              responseRespiratoryParametersObject2['createdAt'] ?? '',
+            ) ??
             object.respiratoryParametersObject2.createdAt,
         updatedAt: DateTime.tryParse(
-          responseRespiratoryParametersObject2['updatedAt'] ?? '',
-        ) ??
+              responseRespiratoryParametersObject2['updatedAt'] ?? '',
+            ) ??
             object.respiratoryParametersObject2.updatedAt,
       );
 
@@ -137,15 +137,15 @@ class BackendCatalogOfItemsApi extends BackendObjectsApi {
       );
 
       RespiratoryParameters respiratoryParameters =
-      object.respiratoryParameters.copyWith(
+          object.respiratoryParameters.copyWith(
         objectId: responseRespiratoryParameters['objectId'],
         createdAt: DateTime.tryParse(
-          responseRespiratoryParameters['createdAt'] ?? '',
-        ) ??
+              responseRespiratoryParameters['createdAt'] ?? '',
+            ) ??
             object.respiratoryParameters.createdAt,
         updatedAt: DateTime.tryParse(
-          responseRespiratoryParameters['updatedAt'] ?? '',
-        ) ??
+              responseRespiratoryParameters['updatedAt'] ?? '',
+            ) ??
             object.respiratoryParameters.updatedAt,
       );
 
@@ -155,15 +155,15 @@ class BackendCatalogOfItemsApi extends BackendObjectsApi {
       );
 
       BloodGasAnalysisObject bloodGasAnalysisObject1 =
-      object.bloodGasAnalysisObject1.copyWith(
+          object.bloodGasAnalysisObject1.copyWith(
         objectId: responseBloodGasAnalysisObject1['objectId'],
         createdAt: DateTime.tryParse(
-          responseBloodGasAnalysisObject1['createdAt'] ?? '',
-        ) ??
+              responseBloodGasAnalysisObject1['createdAt'] ?? '',
+            ) ??
             object.bloodGasAnalysisObject1.createdAt,
         updatedAt: DateTime.tryParse(
-          responseBloodGasAnalysisObject1['updatedAt'] ?? '',
-        ) ??
+              responseBloodGasAnalysisObject1['updatedAt'] ?? '',
+            ) ??
             object.bloodGasAnalysisObject1.updatedAt,
       );
 
@@ -173,15 +173,15 @@ class BackendCatalogOfItemsApi extends BackendObjectsApi {
       );
 
       BloodGasAnalysisObject bloodGasAnalysisObject2 =
-      object.bloodGasAnalysisObject2.copyWith(
+          object.bloodGasAnalysisObject2.copyWith(
         objectId: responseBloodGasAnalysisObject2['objectId'],
         createdAt: DateTime.tryParse(
-          responseBloodGasAnalysisObject2['createdAt'] ?? '',
-        ) ??
+              responseBloodGasAnalysisObject2['createdAt'] ?? '',
+            ) ??
             object.bloodGasAnalysisObject2.createdAt,
         updatedAt: DateTime.tryParse(
-          responseBloodGasAnalysisObject2['updatedAt'] ?? '',
-        ) ??
+              responseBloodGasAnalysisObject2['updatedAt'] ?? '',
+            ) ??
             object.bloodGasAnalysisObject2.updatedAt,
       );
 
@@ -193,12 +193,12 @@ class BackendCatalogOfItemsApi extends BackendObjectsApi {
       BloodGasAnalysis bloodGasAnalysis = object.bloodGasAnalysis.copyWith(
         objectId: responseBloodGasAnalysis['objectId'],
         createdAt: DateTime.tryParse(
-          responseBloodGasAnalysis['createdAt'] ?? '',
-        ) ??
+              responseBloodGasAnalysis['createdAt'] ?? '',
+            ) ??
             object.bloodGasAnalysis.createdAt,
         updatedAt: DateTime.tryParse(
-          responseBloodGasAnalysis['updatedAt'] ?? '',
-        ) ??
+              responseBloodGasAnalysis['updatedAt'] ?? '',
+            ) ??
             object.bloodGasAnalysis.updatedAt,
       );
 
@@ -210,11 +210,11 @@ class BackendCatalogOfItemsApi extends BackendObjectsApi {
       LaborParameters laborParameters = object.laborParameters.copyWith(
         objectId: responseLaborParameters['objectId'],
         createdAt:
-        DateTime.tryParse(responseLaborParameters['createdAt'] ?? '') ??
-            object.laborParameters.createdAt,
+            DateTime.tryParse(responseLaborParameters['createdAt'] ?? '') ??
+                object.laborParameters.createdAt,
         updatedAt:
-        DateTime.tryParse(responseLaborParameters['updatedAt'] ?? '') ??
-            object.laborParameters.updatedAt,
+            DateTime.tryParse(responseLaborParameters['updatedAt'] ?? '') ??
+                object.laborParameters.updatedAt,
       );
 
       /// Medicaments
@@ -278,24 +278,24 @@ class BackendCatalogOfItemsApi extends BackendObjectsApi {
   Future<Stream<List<AbstractDatabaseObject>>> getObjects() async {
     try {
       List<dynamic> responseICUDiagnosis =
-      await Backend.getAll(ICUDiagnosis.databaseTable);
+          await Backend.getAll(ICUDiagnosis.databaseTable);
       List<dynamic> responseVitalSigns =
-      await Backend.getAll(VitalSigns.databaseTable);
+          await Backend.getAll(VitalSigns.databaseTable);
       List<dynamic> responseRespiratoryParameters =
-      await Backend.getAll(RespiratoryParameters.databaseTable);
+          await Backend.getAll(RespiratoryParameters.databaseTable);
       List<dynamic> responseBloodGasAnalysis =
-      await Backend.getAll(BloodGasAnalysis.databaseTable);
+          await Backend.getAll(BloodGasAnalysis.databaseTable);
       List<dynamic> responseLaborParameters =
-      await Backend.getAll(LaborParameters.databaseTable);
+          await Backend.getAll(LaborParameters.databaseTable);
       List<dynamic> responseMedicaments =
-      await Backend.getAll(Medicaments.databaseTable);
+          await Backend.getAll(Medicaments.databaseTable);
       List<dynamic> responseMovementData =
-      await Backend.getAll(PatientData.databaseTable);
+          await Backend.getAll(PatientData.databaseTable);
 
       List<ICUDiagnosis> icuDiagnosisResults = <ICUDiagnosis>[];
       List<VitalSigns> vitalSignsResults = <VitalSigns>[];
       List<RespiratoryParameters> respiratoryParametersResults =
-      <RespiratoryParameters>[];
+          <RespiratoryParameters>[];
       List<BloodGasAnalysis> bloodGasAnalysisResults = <BloodGasAnalysis>[];
       List<LaborParameters> laborParametersResults = <LaborParameters>[];
       List<Medicaments> medicamentsResults = <Medicaments>[];
@@ -363,9 +363,9 @@ class BackendCatalogOfItemsApi extends BackendObjectsApi {
           LaborParameters(
             leukocyteCount: element['Leukozyten']['estimateNumber'].toDouble(),
             lymphocyteCount:
-            element['lymphozyten_abs']['estimateNumber'].toDouble(),
+                element['lymphozyten_abs']['estimateNumber'].toDouble(),
             lymphocytePercentage:
-            element['lymphozyten_proz']['estimateNumber'].toDouble(),
+                element['lymphozyten_proz']['estimateNumber'].toDouble(),
             plateletCount: element['Thrombozyten']['estimateNumber'].toDouble(),
             cReactiveProteinLevel: element['CRP']['estimateNumber'].toDouble(),
             procalcitoninLevel: element['PCT']['estimateNumber'].toDouble(),
@@ -374,7 +374,7 @@ class BackendCatalogOfItemsApi extends BackendObjectsApi {
             creatinine: element['Kreatinin']['estimateNumber'].toDouble(),
             heartFailureMarker: element['BNP']['estimateNumber'].toDouble(),
             heartFailureMarkerNTProBNP:
-            element['NT_Pro_BNP']['estimateNumber'].toDouble(),
+                element['NT_Pro_BNP']['estimateNumber'].toDouble(),
             bilirubinTotal: element['Bilirubin']['estimateNumber'].toDouble(),
             hemoglobin: element['Haemoglobin']['estimateNumber'].toDouble(),
             hematocrit: element['Haematokrit']['estimateNumber'].toDouble(),
@@ -384,16 +384,16 @@ class BackendCatalogOfItemsApi extends BackendObjectsApi {
             troponin: element['Troponin']['estimateNumber'].toDouble(),
             creatineKinase: element['CK']['estimateNumber'].toDouble(),
             myocardialInfarctionMarkerCKMB:
-            element['CK_MB']['estimateNumber'].toDouble(),
+                element['CK_MB']['estimateNumber'].toDouble(),
             lactateDehydrogenaseLevel:
-            element['LDH']['estimateNumber'].toDouble(),
+                element['LDH']['estimateNumber'].toDouble(),
             amylaseLevel: element['Amylase']['estimateNumber'].toDouble(),
             lipaseLevel: element['Lipase']['estimateNumber'].toDouble(),
             dDimer: element['D_Dimere']['estimateNumber'].toDouble(),
             internationalNormalizedRatio:
-            element['INR']['estimateNumber'].toDouble(),
+                element['INR']['estimateNumber'].toDouble(),
             partialThromboplastinTime:
-            element['pTT']['estimateNumber'].toDouble(),
+                element['pTT']['estimateNumber'].toDouble(),
             patientObjectId: element['Patient']['objectId'],
             doctorObjectId: element['Doctor']['objectId'],
             objectId: element['objectId'],
@@ -430,6 +430,26 @@ class BackendCatalogOfItemsApi extends BackendObjectsApi {
             patientID: element['ID'],
             caseNumber: element['CaseNumber'],
             instKey: element['inst_key'],
+            bodyWeight: element['BodyWeight']['estimateNumber'].toDouble(),
+            ezpICU: DateTime.parse(element['EZP_ICU']),
+            age: element['Age'],
+            gender: element['Gender'] ?? '',
+            bmi: element['BMI']['estimateNumber'].toDouble(),
+            idealBMI: element['IdealBMI']['estimateNumber'].toDouble(),
+            dischargeReason: element['DischargeReason'] ?? '',
+            azpICU: DateTime.parse(element['AZP_ICU']),
+            ventilationDays: element['VentilationDays'],
+            azpKH: DateTime.parse(element['AZP_KH']),
+            ezpKH: DateTime.parse(element['EZP_ICU']),
+            icd10Codes: element['ICD_10_Codes'] ?? '',
+            station: element['Station'] ?? '',
+            lbgt70: element['LBgt70'],
+            icuMortality: element['ICU_Mortality']['estimateNumber'].toDouble(),
+            khMortality: element['KH_Mortality']['estimateNumber'].toDouble(),
+            icuLengthStay: element['ICU_LengthStay'],
+            khLengthStay: element['KH_LengthStay'],
+            wdaKH: element['WdaKH']['estimateNumber'].toDouble(),
+            weznDisease: element['WEznDisease']['estimateNumber'].toDouble(),
             objectId: element['objectId'],
             patientObjectId: element['Patient']['objectId'],
             doctorObjectId: element['Doctor']['objectId'],
