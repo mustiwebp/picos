@@ -686,6 +686,8 @@ class BackendCatalogOfItemsApi extends BackendObjectsApi {
         }
       }
 
+      print(objectList);
+
       return getObjectsStream();
     } catch (e) {
       return Stream<List<CatalogOfItemsElement>>.error(e);

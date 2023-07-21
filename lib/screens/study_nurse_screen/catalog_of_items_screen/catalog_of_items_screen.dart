@@ -259,7 +259,7 @@ class _CatalogOfItemsScreenState extends State<CatalogOfItemsScreen>
                   );
           VitalSignsObject? vitalSignsObject1 =
               (_objectsList[0] as CatalogOfItemsElement)
-                  .vitalSignsObject1
+                  .vitalSignsObject1!
                   .copyWith(
                     heartRate: pageStorage?.heartRate1,
                     systolicArterialPressure:
@@ -272,7 +272,7 @@ class _CatalogOfItemsScreenState extends State<CatalogOfItemsScreen>
 
           VitalSignsObject? vitalSignsObject2 =
               (_objectsList[0] as CatalogOfItemsElement)
-                  .vitalSignsObject2
+                  .vitalSignsObject2!
                   .copyWith(
                     heartRate: pageStorage?.heartRate2,
                     systolicArterialPressure:
@@ -293,7 +293,7 @@ class _CatalogOfItemsScreenState extends State<CatalogOfItemsScreen>
 
           RespiratoryParametersObject? respiratoryParametersObject1 =
               (_objectsList[0] as CatalogOfItemsElement)
-                  .respiratoryParametersObject1
+                  .respiratoryParametersObject1!
                   .copyWith(
                     tidalVolume: pageStorage?.tidalVolume,
                     respiratoryRate: pageStorage?.respiratoryRate1,
@@ -302,7 +302,7 @@ class _CatalogOfItemsScreenState extends State<CatalogOfItemsScreen>
 
           RespiratoryParametersObject? respiratoryParametersObject2 =
               (_objectsList[0] as CatalogOfItemsElement)
-                  .respiratoryParametersObject1
+                  .respiratoryParametersObject1!
                   .copyWith(
                     tidalVolume: pageStorage?.tidalVolume,
                     respiratoryRate: pageStorage?.respiratoryRate2,
@@ -321,7 +321,7 @@ class _CatalogOfItemsScreenState extends State<CatalogOfItemsScreen>
 
           BloodGasAnalysisObject? bloodGasAnalysisObject1 = (_objectsList[0]
                   as CatalogOfItemsElement)
-              .bloodGasAnalysisObject1
+              .bloodGasAnalysisObject1!
               .copyWith(
                 arterialOxygenSaturation:
                     pageStorage?.arterialOxygenSaturation1,
@@ -340,7 +340,7 @@ class _CatalogOfItemsScreenState extends State<CatalogOfItemsScreen>
 
           BloodGasAnalysisObject? bloodGasAnalysisObject2 = (_objectsList[0]
                   as CatalogOfItemsElement)
-              .bloodGasAnalysisObject2
+              .bloodGasAnalysisObject2!
               .copyWith(
                 arterialOxygenSaturation:
                     pageStorage?.arterialOxygenSaturation1,
