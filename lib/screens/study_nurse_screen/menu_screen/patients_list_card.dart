@@ -51,9 +51,9 @@ class PatientsListCard extends StatelessWidget {
         );
       },
       delete: () {
-        context
+        /*context
             .read<ObjectsListBloc<BackendPatientsListApi>>()
-            .add(RemoveObject(_patientsListElement));
+            .add(RemoveObject(_patientsListElement));*/
         context
             .read<ObjectsListBloc<BackendCatalogOfItemsApi>>()
             .add(RemoveObject(_patientsListElement));
