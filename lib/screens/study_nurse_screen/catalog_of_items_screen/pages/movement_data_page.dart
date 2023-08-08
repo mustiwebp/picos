@@ -201,7 +201,7 @@ class _MovementDataPageState extends State<MovementDataPage> {
   double bmi = 0;
   int bodyHeight = 0;
   double bodyWeight = 0;
-  
+
   @override
   void initState() {
     super.initState();
@@ -213,7 +213,12 @@ class _MovementDataPageState extends State<MovementDataPage> {
     _selectedDischargeTimeFromTheHospital =
         widget.initialDischargeTimeFromTheHospital;
 
-    bodyHeight = widget.initialBodyHeight!.toInt();
+    if (widget.initialBodyHeight != null) {
+      bodyHeight = widget.initialBodyHeight!.toInt();
+    } else {
+      bodyHeight = 0;
+    }
+
     bodyWeight = widget.initialBodyWeight ?? 0;
 
     if (bodyWeight != 0 && bodyHeight != 0) {
