@@ -24,6 +24,7 @@ import 'package:picos/widgets/picos_ink_well_button.dart';
 import 'package:picos/widgets/picos_screen_frame.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:picos/widgets/picos_text_field.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 ///Displays the login screen.
 class LoginScreen extends StatefulWidget {
@@ -46,6 +47,22 @@ class _LoginScreenState extends State<LoginScreen>
   BackendError? _backendError;
 
   static const double _sponsorLogoPadding = 30;
+
+  PackageInfo _packageInfo = PackageInfo(
+    appName: 'Unknown',
+    packageName: 'Unknown',
+    version: 'Unknown',
+    buildNumber: 'Unknown',
+    buildSignature: 'Unknown',
+    installerStore: 'Unknown',
+  );
+
+  Future<void> _initPackageInfo() async {
+    final PackageInfo info = await PackageInfo.fromPlatform();
+    setState(() {
+      _packageInfo = info;
+    });
+  }
 
   Future<void> _fetchSecureStorageData() async {
     String? valueIsChecked;
@@ -89,6 +106,7 @@ class _LoginScreenState extends State<LoginScreen>
   void initState() {
     super.initState();
     Backend();
+    _initPackageInfo();
     _fetchSecureStorageData();
   }
 
@@ -134,6 +152,12 @@ class _LoginScreenState extends State<LoginScreen>
               ),
               const SizedBox(
                 height: 15,
+              ),
+              Text(
+                'Version ${_packageInfo.version}',
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               _backendError != null
                   ? Text(
@@ -201,8 +225,7 @@ class _LoginScreenState extends State<LoginScreen>
                 child: PicosInkWellButton(
                   disabled: _sendDisabled,
                   onTap: () {
-                    _submitHandler(
-                    );
+                    _submitHandler();
                   },
                   text: AppLocalizations.of(context)!.submit,
                 ),
