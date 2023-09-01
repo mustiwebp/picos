@@ -142,7 +142,7 @@ class _LoginScreenState extends State<LoginScreen>
         headers: <String, String>{
           'Access-Control-Allow-Origin': '*',
           'Content-Type': 'application/json',
-          'Accept': '*/*'
+          'Accept': '*/*',
         },
       );
 
@@ -198,9 +198,11 @@ class _LoginScreenState extends State<LoginScreen>
   }
 
   Future<void> _checkForNewVersionAndroid() async {
-    const String appPackage = 'com.example.myapp';
+    const String appPackage = 'de.hitsolutions.picos';
     const String appUrl =
         'https://play.google.com/store/apps/details?id=$appPackage';
+
+    currentVersion = '1.4.0';
 
     try {
       final http.Response response = await http.get(Uri.parse(appUrl));
@@ -223,7 +225,8 @@ class _LoginScreenState extends State<LoginScreen>
                 return AlertDialog(
                   title: const Text('New Version Available'),
                   content: Text(
-                    'A new version ($latestVersion) is available on the App Store.',
+                    'A new version ($latestVersion) is available on the '
+                    'App Store.',
                   ),
                   actions: <TextButton>[
                     TextButton(
