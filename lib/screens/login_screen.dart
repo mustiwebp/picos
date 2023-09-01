@@ -25,6 +25,7 @@ import 'package:picos/widgets/picos_screen_frame.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:picos/widgets/picos_text_field.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:upgrader/upgrader.dart';
 
 ///Displays the login screen.
 class LoginScreen extends StatefulWidget {
@@ -137,8 +138,8 @@ class _LoginScreenState extends State<LoginScreen>
                   ),
                   children: <TextSpan>[
                     TextSpan(
-                      text:
-                          '${AppLocalizations.of(context)!.welcomeToPICOS},\n',
+                      text: '${AppLocalizations.of(context)!.welcomeToPICOS},'
+                          '\n',
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                       ),
@@ -149,6 +150,10 @@ class _LoginScreenState extends State<LoginScreen>
                     ),
                   ],
                 ),
+              ),
+              Container(
+                margin: const EdgeInsets.fromLTRB(12.0, 0.0, 12.0, 0.0),
+                child: UpgradeCard(),
               ),
               const SizedBox(
                 height: 15,
