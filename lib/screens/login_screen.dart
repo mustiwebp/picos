@@ -20,6 +20,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:html/parser.dart';
 import 'package:picos/themes/global_theme.dart';
 import 'package:picos/util/backend.dart';
 import 'package:picos/util/flutter_secure_storage.dart';
@@ -53,7 +54,7 @@ class _LoginScreenState extends State<LoginScreen>
   static const double _sponsorLogoPadding = 30;
 
   String latestVersion = '';
-  String currentVersion = '1.4.0';
+  String currentVersion = '';
 
   PackageInfo _packageInfo = PackageInfo(
     appName: 'Unknown',
@@ -113,8 +114,12 @@ class _LoginScreenState extends State<LoginScreen>
   void initState() {
     super.initState();
     Backend();
-    _checkForNewVersion();
     _initPackageInfo();
+    if (Platform.isIOS) {
+      _checkForNewVersionIOS();
+    } else if (Platform.isAndroid) {
+      _checkForNewVersionAndroid();
+    }
     _fetchSecureStorageData();
   }
 
@@ -125,9 +130,11 @@ class _LoginScreenState extends State<LoginScreen>
     super.dispose();
   }
 
-  Future<void> _checkForNewVersion() async {
+  Future<void> _checkForNewVersionIOS() async {
     const String bundleId = 'de.hit-solutions.PICOS';
     const String url = 'https://itunes.apple.com/de/lookup?bundleId=$bundleId';
+
+    currentVersion = _packageInfo.version;
 
     try {
       final http.Response response = await http.get(
@@ -187,6 +194,62 @@ class _LoginScreenState extends State<LoginScreen>
       }
     } catch (e) {
       print('Error fetching app version: $e');
+    }
+  }
+
+  Future<void> _checkForNewVersionAndroid() async {
+    const String appPackage = 'com.example.myapp';
+    const String appUrl =
+        'https://play.google.com/store/apps/details?id=$appPackage';
+
+    try {
+      final http.Response response = await http.get(Uri.parse(appUrl));
+
+      if (response.statusCode == 200) {
+        final dynamic document = parse(response.body);
+        final String appVersion =
+            document.querySelector('div[itemprop="softwareVersion"]')?.text;
+
+        if (appVersion != currentVersion) {
+          setState(() {
+            latestVersion = appVersion;
+          });
+
+          // Show the AlertDialog immediately
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: const Text('New Version Available'),
+                  content: Text(
+                    'A new version ($latestVersion) is available on the App Store.',
+                  ),
+                  actions: <TextButton>[
+                    TextButton(
+                      onPressed: () {
+                        // Open the App Store link for your app
+                        // You can use the `url_launcher` package for this.
+                      },
+                      child: const Text('Update'),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: const Text('Later'),
+                    ),
+                  ],
+                );
+              },
+            );
+          });
+        } else {
+          print('App details not found.');
+        }
+      }
+    } catch (e) {
+      print('Error fetching app details: $e');
     }
   }
 
