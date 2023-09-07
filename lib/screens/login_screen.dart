@@ -16,11 +16,13 @@
 */
 
 import 'dart:convert';
-import 'dart:io';
+import 'dart:io' as io;
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:html/parser.dart';
+import 'package:html/parser.dart' as html_parser;
+import 'package:html/dom.dart' as html;
+import 'package:picos/models/document.dart';
 import 'package:picos/themes/global_theme.dart';
 import 'package:picos/util/backend.dart';
 import 'package:picos/util/flutter_secure_storage.dart';
@@ -115,9 +117,9 @@ class _LoginScreenState extends State<LoginScreen>
     super.initState();
     Backend();
     _initPackageInfo();
-    if (Platform.isIOS) {
+    if (io.Platform.isIOS) {
       _checkForNewVersionIOS();
-    } else if (Platform.isAndroid) {
+    } else if (io.Platform.isAndroid) {
       _checkForNewVersionAndroid();
     }
     _fetchSecureStorageData();
@@ -205,55 +207,30 @@ class _LoginScreenState extends State<LoginScreen>
     currentVersion = '1.4.0';
 
     try {
-      final http.Response response = await http.get(Uri.parse(appUrl));
-
+      final http.Response response = await http.get(
+        Uri.parse(appUrl),
+        headers: <String, String>{
+          'User-Agent':
+              'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+        },
+      );
       if (response.statusCode == 200) {
-        final dynamic document = parse(response.body);
-        final String appVersion =
-            document.querySelector('div[itemprop="softwareVersion"]')?.text;
+        final document = html_parser.parse(response.body);
 
-        if (appVersion != currentVersion) {
-          setState(() {
-            latestVersion = appVersion;
-          });
+        final element = document.querySelector(
+            '#yDmH0d > div.VfPpkd-Sx9Kwc.cC1eCc.UDxLd.PzCPDd.HQdjr.VfPpkd-Sx9Kwc-OWXEXe-FNFY6c > '
+            'div.VfPpkd-wzTsW > div > div > div > div > div.fysCi > div:nth-child(3) > '
+            'div:nth-child(1) > div.reAt0');
 
-          // Show the AlertDialog immediately
-          WidgetsBinding.instance.addPostFrameCallback((_) {
-            showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return AlertDialog(
-                  title: const Text('New Version Available'),
-                  content: Text(
-                    'A new version ($latestVersion) is available on the '
-                    'App Store.',
-                  ),
-                  actions: <TextButton>[
-                    TextButton(
-                      onPressed: () {
-                        // Open the App Store link for your app
-                        // You can use the `url_launcher` package for this.
-                      },
-                      child: const Text('Update'),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: const Text('Later'),
-                    ),
-                  ],
-                );
-              },
-            );
-          });
-        } else {
-          print('App details not found.');
+        if (element != null) {
+          return;
         }
       }
     } catch (e) {
-      print('Error fetching app details: $e');
+      print('Error: $e');
     }
+
+    return;
   }
 
   @override
