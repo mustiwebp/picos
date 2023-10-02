@@ -15,8 +15,13 @@
 *    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:overlay_support/overlay_support.dart';
+import 'package:picos/FCM/notification_badge.dart';
+import 'package:picos/FCM/push_notifcation.dart';
 import 'package:picos/themes/global_theme.dart';
 import 'package:picos/util/backend.dart';
 import 'package:picos/util/flutter_secure_storage.dart';
@@ -37,6 +42,10 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen>
     with SingleTickerProviderStateMixin {
+  late int _totalNotifications;
+  late final FirebaseMessaging _messaging;
+  PushNotification? _notificationInfo;
+
   final TextEditingController _loginController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final SecureStorage _secureStorage = SecureStorage();
@@ -47,6 +56,58 @@ class _LoginScreenState extends State<LoginScreen>
   BackendError? _backendError;
 
   static const double _sponsorLogoPadding = 30;
+
+  Future _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+    print('Handling a background message: ${message.messageId}');
+  }
+
+  void requestAndRegisterNotification() async {
+    // 1. Initialize the Firebase app
+    await Firebase.initializeApp();
+
+    // 2. Instantiate Firebase Messaging
+    _messaging = FirebaseMessaging.instance;
+    FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+
+    // 3. On iOS, this helps to take the user permissions
+    NotificationSettings settings = await _messaging.requestPermission(
+      alert: true,
+      badge: true,
+      provisional: false,
+      sound: true,
+    );
+
+    if (settings.authorizationStatus == AuthorizationStatus.authorized) {
+      print('User granted permission');
+      String? token = await _messaging.getToken();
+      print("The token is " + token!);
+      // For handling the received notifications
+      FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+        // Parse the message received
+        PushNotification notification = PushNotification(
+          title: message.notification?.title,
+          body: message.notification?.body,
+        );
+
+        setState(() {
+          _notificationInfo = notification;
+          _totalNotifications++;
+        });
+        if (_notificationInfo != null) {
+          // For displaying the notification as an overlay
+          showSimpleNotification(
+            Text(_notificationInfo!.title!),
+            leading: NotificationBadge(totalNotifications: _totalNotifications),
+            subtitle: Text(_notificationInfo!.body!),
+            background: Colors.cyan.shade700,
+            duration: Duration(seconds: 2),
+          );
+        }
+      });
+    } else {
+      print('User declined or has not accepted permission');
+    }
+  }
 
   Future<void> _fetchSecureStorageData() async {
     String? valueIsChecked;
@@ -92,6 +153,7 @@ class _LoginScreenState extends State<LoginScreen>
   void initState() {
     super.initState();
     Backend();
+    requestAndRegisterNotification();
     if (!kIsWeb) {
       _fetchSecureStorageData();
     }
@@ -113,6 +175,7 @@ class _LoginScreenState extends State<LoginScreen>
         child: PicosBody(
           child: Column(
             children: <Widget>[
+              NotificationBadge(totalNotifications: _totalNotifications),
               const Image(
                 image: AssetImage('assets/PICOS_Logo_RGB.png'),
               ),
