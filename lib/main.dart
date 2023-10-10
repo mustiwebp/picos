@@ -15,8 +15,10 @@
 *    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+import 'package:flutter/foundation.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:picos/api/firebase_api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:picos/app_config.dart';
@@ -25,7 +27,10 @@ import 'package:picos/firebase_options.dart';
 /// This is the main entry point of the application.
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  if (!kIsWeb) {
+    await Firebase.initializeApp();
+    await FirebaseApi().initNotifications();
+  }
   FirebaseMessaging messaging = FirebaseMessaging.instance;
   await messaging.requestPermission(
     alert: true,
@@ -36,8 +41,6 @@ void main() async {
     provisional: false,
     sound: true,
   );
-  final String? token = await messaging.getToken();
-  print('Token: $token');
   SystemChrome.setPreferredOrientations(
     <DeviceOrientation>[DeviceOrientation.portraitUp],
   ).then((_) {
