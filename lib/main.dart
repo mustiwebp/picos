@@ -22,7 +22,6 @@ import 'package:picos/api/firebase_api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:picos/app_config.dart';
-import 'package:picos/firebase_options.dart';
 
 /// This is the main entry point of the application.
 void main() async {
