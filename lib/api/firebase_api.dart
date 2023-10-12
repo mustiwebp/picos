@@ -21,9 +21,7 @@ import 'package:parse_server_sdk_flutter/parse_server_sdk_flutter.dart';
 
 import '../config.dart';
 
-/// Handles background message.
-Future<void> handleBackgroundMessage(RemoteMessage message) async =>
-    ParsePush.instance.onMessage(message);
+Future<void> handleBackgroundMessage(RemoteMessage message) async => ParsePush.instance.onMessage(message);
 
 /// Firebase Api class.
 class FirebaseApi {
@@ -67,7 +65,7 @@ class FirebaseApi {
       // Save new installation
       await currentInstallation.save();
     }
-
+    
     FirebaseMessaging.onBackgroundMessage(handleBackgroundMessage);
   }
 }
