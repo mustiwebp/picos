@@ -49,47 +49,47 @@ class EditPatientScreen extends StatefulWidget {
   /// global institute key.
   static String? instituteKey;
 
+  /// Local variable for weight and BMI.
+  static bool weightBMI = false;
+
+  /// Local variable for heart frequency.
+  static bool heartFrequency = false;
+
+  /// Local variable for blood pressure.
+  static bool bloodPressure = false;
+
+  /// Local variable for blood sugar levels.
+  static bool bloodSugarLevels = false;
+
+  /// Local variable for walk distance.
+  static bool walkDistance = false;
+
+  /// Local variable for sleep duration.
+  static bool sleepDuration = false;
+
+  /// Local variable for sleep quality.
+  static bool sleepQuality = false;
+
+  /// Local variable for pain.
+  static bool pain = false;
+
+  /// Local variable for blood PHQ4.
+  static bool phq4 = false;
+
+  /// Local variable for medication.
+  static bool medication = false;
+
+  /// Local variable for therapy.
+  static bool therapy = false;
+
+  /// Local variable for doctor visits.
+  static bool doctorsVisit = false;
+
   @override
   State<EditPatientScreen> createState() => _EditPatientScreenState();
 }
 
 class _EditPatientScreenState extends State<EditPatientScreen> {
-  /// Local variable for weight and BMI.
-  bool _weightBMI = false;
-
-  /// Local variable for heart frequency.
-  bool _heartFrequency = false;
-
-  /// Local variable for blood pressure.
-  bool _bloodPressure = false;
-
-  /// Local variable for blood sugar levels.
-  bool _bloodSugarLevels = false;
-
-  /// Local variable for walk distance.
-  bool _walkDistance = false;
-
-  /// Local variable for sleep duration.
-  bool _sleepDuration = false;
-
-  /// Local variable for sleep quality.
-  bool _sleepQuality = false;
-
-  /// Local variable for pain.
-  bool _pain = false;
-
-  /// Local variable for blood PHQ4.
-  bool _phq4 = false;
-
-  /// Local variable for medication.
-  bool _medication = false;
-
-  /// Local variable for therapy.
-  bool _therapy = false;
-
-  /// Local variable for doctor visits.
-  bool _doctorsVisit = false;
-
   /// Determines if you are able to add the patient.
   bool _addDisabled = true;
 
@@ -129,22 +129,28 @@ class _EditPatientScreenState extends State<EditPatientScreen> {
       _title = '${_patientsListElement!.patient.firstName} '
           '${_patientsListElement!.patient.familyName}';
 
-      _weightBMI = _patientsListElement!.patientProfile.weightBMIEnabled;
-      _heartFrequency =
+      EditPatientScreen.weightBMI =
+          _patientsListElement!.patientProfile.weightBMIEnabled;
+      EditPatientScreen.heartFrequency =
           _patientsListElement!.patientProfile.heartFrequencyEnabled;
-      _bloodPressure =
+      EditPatientScreen.bloodPressure =
           _patientsListElement!.patientProfile.bloodPressureEnabled;
-      _bloodSugarLevels =
+      EditPatientScreen.bloodSugarLevels =
           _patientsListElement!.patientProfile.bloodSugarLevelsEnabled;
-      _walkDistance = _patientsListElement!.patientProfile.walkDistanceEnabled;
-      _sleepDuration =
+      EditPatientScreen.walkDistance =
+          _patientsListElement!.patientProfile.walkDistanceEnabled;
+      EditPatientScreen.sleepDuration =
           _patientsListElement!.patientProfile.sleepDurationEnabled;
-      _sleepQuality = _patientsListElement!.patientProfile.sleepQualityEnabled;
-      _pain = _patientsListElement!.patientProfile.painEnabled;
-      _phq4 = _patientsListElement!.patientProfile.phq4Enabled;
-      _medication = _patientsListElement!.patientProfile.medicationEnabled;
-      _therapy = _patientsListElement!.patientProfile.therapyEnabled;
-      _doctorsVisit = _patientsListElement!.patientProfile.doctorsVisitEnabled;
+      EditPatientScreen.sleepQuality =
+          _patientsListElement!.patientProfile.sleepQualityEnabled;
+      EditPatientScreen.pain = _patientsListElement!.patientProfile.painEnabled;
+      EditPatientScreen.phq4 = _patientsListElement!.patientProfile.phq4Enabled;
+      EditPatientScreen.medication =
+          _patientsListElement!.patientProfile.medicationEnabled;
+      EditPatientScreen.therapy =
+          _patientsListElement!.patientProfile.therapyEnabled;
+      EditPatientScreen.doctorsVisit =
+          _patientsListElement!.patientProfile.doctorsVisitEnabled;
 
       EditPatientScreen.patientObjectId =
           _patientsListElement!.patient.objectId;
@@ -179,13 +185,13 @@ class _EditPatientScreenState extends State<EditPatientScreen> {
               children: <Widget>[
                 PicosLabel(AppLocalizations.of(context)!.vitalValues),
                 _picosSwitchAndSizedBox(
-                  _weightBMI,
-                  _weightBMI
+                  EditPatientScreen.weightBMI,
+                  EditPatientScreen.weightBMI
                       ? null
                       : (bool value) {
                           setState(() {
                             _addDisabled = false;
-                            _weightBMI = value;
+                            EditPatientScreen.weightBMI = value;
                           });
                         },
                   AppLocalizations.of(context)!.weightBMI,
@@ -194,11 +200,11 @@ class _EditPatientScreenState extends State<EditPatientScreen> {
                   ),
                 ),
                 _picosSwitchAndSizedBox(
-                  _heartFrequency,
+                  EditPatientScreen.heartFrequency,
                   (bool value) {
                     setState(() {
                       _addDisabled = false;
-                      _heartFrequency = value;
+                      EditPatientScreen.heartFrequency = value;
                     });
                   },
                   AppLocalizations.of(context)!.heartFrequency,
@@ -207,11 +213,11 @@ class _EditPatientScreenState extends State<EditPatientScreen> {
                   ),
                 ),
                 _picosSwitchAndSizedBox(
-                  _bloodPressure,
+                  EditPatientScreen.bloodPressure,
                   (bool value) {
                     setState(() {
                       _addDisabled = false;
-                      _bloodPressure = value;
+                      EditPatientScreen.bloodPressure = value;
                     });
                   },
                   AppLocalizations.of(context)!.bloodPressure,
@@ -220,11 +226,11 @@ class _EditPatientScreenState extends State<EditPatientScreen> {
                   ),
                 ),
                 _picosSwitchAndSizedBox(
-                  _bloodSugarLevels,
+                  EditPatientScreen.bloodSugarLevels,
                   (bool value) {
                     setState(() {
                       _addDisabled = false;
-                      _bloodSugarLevels = value;
+                      EditPatientScreen.bloodSugarLevels = value;
                     });
                   },
                   AppLocalizations.of(context)!.bloodSugar,
@@ -237,11 +243,11 @@ class _EditPatientScreenState extends State<EditPatientScreen> {
                   height: 10,
                 ),
                 _picosSwitchAndSizedBox(
-                  _walkDistance,
+                  EditPatientScreen.walkDistance,
                   (bool value) {
                     setState(() {
                       _addDisabled = false;
-                      _walkDistance = value;
+                      EditPatientScreen.walkDistance = value;
                     });
                   },
                   AppLocalizations.of(context)!.walkDistance,
@@ -250,13 +256,13 @@ class _EditPatientScreenState extends State<EditPatientScreen> {
                   ),
                 ),
                 _picosSwitchAndSizedBox(
-                  _sleepDuration,
-                  _sleepDuration
+                  EditPatientScreen.sleepDuration,
+                  EditPatientScreen.sleepDuration
                       ? null
                       : (bool value) {
                           setState(() {
                             _addDisabled = false;
-                            _sleepDuration = value;
+                            EditPatientScreen.sleepDuration = value;
                           });
                         },
                   AppLocalizations.of(context)!.sleepDuration,
@@ -265,13 +271,13 @@ class _EditPatientScreenState extends State<EditPatientScreen> {
                   ),
                 ),
                 _picosSwitchAndSizedBox(
-                  _sleepQuality,
-                  _sleepQuality
+                  EditPatientScreen.sleepQuality,
+                  EditPatientScreen.sleepQuality
                       ? null
                       : (bool value) {
                           setState(() {
                             _addDisabled = false;
-                            _sleepQuality = value;
+                            EditPatientScreen.sleepQuality = value;
                           });
                         },
                   AppLocalizations.of(context)!.sleepQuality,
@@ -284,13 +290,13 @@ class _EditPatientScreenState extends State<EditPatientScreen> {
                   height: 10,
                 ),
                 _picosSwitchAndSizedBox(
-                  _pain,
-                  _pain
+                  EditPatientScreen.pain,
+                  EditPatientScreen.pain
                       ? null
                       : (bool value) {
                           setState(() {
                             _addDisabled = false;
-                            _pain = value;
+                            EditPatientScreen.pain = value;
                           });
                         },
                   AppLocalizations.of(context)!.pain,
@@ -299,13 +305,13 @@ class _EditPatientScreenState extends State<EditPatientScreen> {
                   ),
                 ),
                 _picosSwitchAndSizedBox(
-                  _phq4,
-                  _phq4
+                  EditPatientScreen.phq4,
+                  EditPatientScreen.phq4
                       ? null
                       : (bool value) {
                           setState(() {
                             _addDisabled = false;
-                            _phq4 = value;
+                            EditPatientScreen.phq4 = value;
                           });
                         },
                   'PHQ-4',
@@ -320,13 +326,13 @@ class _EditPatientScreenState extends State<EditPatientScreen> {
                   height: 10,
                 ),
                 _picosSwitchAndSizedBox(
-                  _medication,
-                  _medication
+                  EditPatientScreen.medication,
+                  EditPatientScreen.medication
                       ? null
                       : (bool value) {
                           setState(() {
                             _addDisabled = false;
-                            _medication = value;
+                            EditPatientScreen.medication = value;
                           });
                         },
                   AppLocalizations.of(context)!.medication,
@@ -335,13 +341,13 @@ class _EditPatientScreenState extends State<EditPatientScreen> {
                   ),
                 ),
                 _picosSwitchAndSizedBox(
-                  _therapy,
-                  _therapy
+                  EditPatientScreen.therapy,
+                  EditPatientScreen.therapy
                       ? null
                       : (bool value) {
                           setState(() {
                             _addDisabled = false;
-                            _therapy = value;
+                            EditPatientScreen.therapy = value;
                           });
                         },
                   AppLocalizations.of(context)!.therapy,
@@ -350,13 +356,13 @@ class _EditPatientScreenState extends State<EditPatientScreen> {
                   ),
                 ),
                 _picosSwitchAndSizedBox(
-                  _doctorsVisit,
-                  _doctorsVisit
+                  EditPatientScreen.doctorsVisit,
+                  EditPatientScreen.doctorsVisit
                       ? null
                       : (bool value) {
                           setState(() {
                             _addDisabled = false;
-                            _doctorsVisit = value;
+                            EditPatientScreen.doctorsVisit = value;
                           });
                         },
                   AppLocalizations.of(context)!.doctorsVisit,
@@ -384,18 +390,18 @@ class _EditPatientScreenState extends State<EditPatientScreen> {
                 PatientProfile newPatientProfile;
                 newPatientProfile =
                     _patientsListElement!.patientProfile.copyWith(
-                  weightBMIEnabled: _weightBMI,
-                  heartFrequencyEnabled: _heartFrequency,
-                  bloodPressureEnabled: _bloodPressure,
-                  bloodSugarLevelsEnabled: _bloodSugarLevels,
-                  walkDistanceEnabled: _walkDistance,
-                  sleepDurationEnabled: _sleepDuration,
-                  sleepQualityEnabled: _sleepQuality,
-                  painEnabled: _pain,
-                  phq4Enabled: _phq4,
-                  medicationEnabled: _medication,
-                  therapyEnabled: _therapy,
-                  doctorsVisitEnabled: _doctorsVisit,
+                  weightBMIEnabled: EditPatientScreen.weightBMI,
+                  heartFrequencyEnabled: EditPatientScreen.heartFrequency,
+                  bloodPressureEnabled: EditPatientScreen.bloodPressure,
+                  bloodSugarLevelsEnabled: EditPatientScreen.bloodSugarLevels,
+                  walkDistanceEnabled: EditPatientScreen.walkDistance,
+                  sleepDurationEnabled: EditPatientScreen.sleepDuration,
+                  sleepQualityEnabled: EditPatientScreen.sleepQuality,
+                  painEnabled: EditPatientScreen.pain,
+                  phq4Enabled: EditPatientScreen.phq4,
+                  medicationEnabled: EditPatientScreen.medication,
+                  therapyEnabled: EditPatientScreen.therapy,
+                  doctorsVisitEnabled: EditPatientScreen.doctorsVisit,
                 );
 
                 PatientsListElement newPatientListElement;

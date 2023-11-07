@@ -16,6 +16,7 @@
 */
 
 import 'package:picos/models/abstract_database_object.dart';
+import 'package:picos/screens/study_nurse_screen/menu_screen/edit_patient_screen.dart';
 
 /// Class with daily questionaire information.
 class Daily extends AbstractDatabaseObject {
@@ -122,16 +123,16 @@ class Daily extends AbstractDatabaseObject {
       };
 
   bool _checkHasNullValues() {
-    if (bloodDiastolic == null ||
-        bloodSugar == null ||
-        bloodSystolic == null ||
-        heartFrequency == null ||
-        pain == null ||
-        sleepDuration == null ||
-        bloodSugarMol == null) {
+    if ((bloodDiastolic == null && EditPatientScreen.bloodPressure) ||
+        (bloodSugar == null && EditPatientScreen.bloodSugarLevels) ||
+        (bloodSystolic == null && EditPatientScreen.bloodPressure) ||
+        (heartFrequency == null && EditPatientScreen.heartFrequency) ||
+        (pain == null && EditPatientScreen.pain) ||
+        (sleepDuration == null && EditPatientScreen.sleepDuration) ||
+        (bloodSugarMol == null && EditPatientScreen.bloodSugarLevels)) {
       return true;
     }
-
+  
     return false;
   }
 
